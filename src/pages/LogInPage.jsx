@@ -1,36 +1,39 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '..'
 
-export default function LogInPage({ onLogIn }) {
-  const [logInInfo, setLogInInfo] = useState({})
+export default function LoginPage({ onLogin }) {
+  const [loginInfo, setLoginInfo] = useState({ email: '', password: '' })
+  const navigate = useNavigate()
 
   const handleChange = ({ target }) => {
-    setLogInInfo({ ...logInInfo, [target.name]: target.value })
+    setLoginInfo({ ...loginInfo, [target.name]: target.value })
   }
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault()
-    return fetch('dummy_users.json')
-      .then((res) => res.json())
-      .then((res) => {
-        const user = res.filter((user) => user.email === logInInfo.email)
-        if (user[0].password === logInInfo.password) {
-          onLogIn(logInInfo)
-        }
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    signInWithEmailAndPassword(auth, loginInfo.email, loginInfo.password)
+      .then((userCredential) => {
+        const user = userCredential.user
+        navigate('/')
+      })
+      .catch((error) => {
+        console.log(error)
       })
   }
 
   return (
     <section>
-      <h1>Log in</h1>
+      <h1>Log In</h1>
       <form onChange={handleChange} onSubmit={handleSubmit}>
-        <label htmlFor="">email</label>
-        <input type="text" value={logInInfo?.email} name="email" />
-        <label htmlFor="">password</label>
-        <input type="password" value={logInInfo?.password} name="password" />
-        <button>login</button>
-        <Link to="/signup">sign up</Link>
+        <label htmlFor="">Email</label>
+        <input type="text" value={loginInfo.email} name="email" />
+        <label htmlFor="">Password</label>
+        <input type="password" value={loginInfo.password} name="password" />
+        <button>Login</button>
       </form>
+      <Link to="/signup">Sign Ip</Link>
     </section>
   )
 }

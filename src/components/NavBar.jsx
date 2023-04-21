@@ -1,27 +1,33 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { auth } from '..'
+import { signOut } from 'firebase/auth'
 
-export default function NavBar({ user, onLogOut }) {
+export default function NavBar({ user, onLogout }) {
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        onLogout(null)
+        navigate('/')
+      })
+      .catch((error) => console.log(error))
+  }
+
   return (
     <header>
       <nav>
-        <ul>
-          <li>Nav</li>
-        </ul>
+        {user ? (
+          <>
+            <span>hello {user.email}</span>
+            <Link to="/my-recipes">My Recipes</Link>
+            <Link to="/my-meal-plan">My Meal Plan</Link>
+            <button onClick={handleLogout}>log out</button>
+          </>
+        ) : (
+          <Link to="/login">login</Link>
+        )}
       </nav>
-      {user && <span>hello {user.email}</span>}
-      {!user ? (
-        <Link to="/login">Log In</Link>
-      ) : (
-        <>
-          <Link to="/my-recipes">
-            <p>My Recipes</p>
-          </Link>
-          <Link to="/my-meal-plan">
-            <p>My Meal Plan</p>
-          </Link>
-          <button onClick={() => onLogOut(null)}>log out</button>
-        </>
-      )}
     </header>
   )
 }
