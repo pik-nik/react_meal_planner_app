@@ -11,3 +11,5 @@ We created a [wireframe](https://whimsical.com/seir63-meal-planner-app-NqDdWC24R
 
 <!-- Insert screenshot of wireframe here -->
 
+Used
+- Firebase/Firestore

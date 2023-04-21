@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { db } from '../index'
+import { addDoc, collection } from 'firebase/firestore'
 
 export default function SearchResultsPage() {
   const [results, setResults] = useState([])
+  // const [recipeToAdd, setRecipeToAdd] = useState({})
+  const [recipeAdded, setRecipeAdded] = useState(false)
   const { keyword } = useParams()
   useEffect(() => {
     fetch(
@@ -13,6 +17,22 @@ export default function SearchResultsPage() {
         setResults(res.hits)
       })
   }, [keyword])
+
+  const recipeCollectionsRef = collection(db, 'recipes')
+  const handleAdd = async (id, { recipe }) => {
+    console.log(recipe, id)
+    try {
+      await addDoc(recipeCollectionsRef, {
+        name: recipe.label,
+        edamam_id: id,
+        image: recipe.image,
+        user_id: 1, // hardcoded user id for now
+      })
+    } catch (err) {
+      console.log(err)
+    }
+    setRecipeAdded(true)
+  }
   return (
     <section>
       <ul>
@@ -29,6 +49,19 @@ export default function SearchResultsPage() {
                   <span>{result.recipe.totalTime}</span>
                 </footer>
               </Link>
+              <button
+                onClick={() => handleAdd(id, result)}
+                disabled={recipeAdded}
+              >
+                Add to My Recipes
+              </button>
+              {recipeAdded ? (
+                <>
+                  <Link to="/my-recipe-page">
+                    <span>ADDED Go to My Recipes</span>
+                  </Link>
+                </>
+              ) : null}
             </li>
           )
         })}
