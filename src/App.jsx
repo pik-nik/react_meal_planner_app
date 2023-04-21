@@ -26,7 +26,7 @@ function App() {
           }
         />
         <Route
-          path="/recipes/:recipeName"
+          path="/recipes/:id"
           element={<RecipeDetailsPage results={results} />}
         />
         <Route path="/login" element={<LogInPage onLogIn={setUser} />} />

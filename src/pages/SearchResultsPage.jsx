@@ -1,20 +1,15 @@
 import { Link } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
 
 export default function SearchResultsPage({ results }) {
-  // const handleClick = () => {
-
-  // }
   return (
     <section>
       <ul>
         {results.map((result, index) => {
+          const uri = result.recipe.uri
+          const id = uri.substring(uri.indexOf('_') + 1, uri.length)
           return (
             <li key={index}>
-              <Link
-                to={`/recipes/${result.recipe.label}`}
-                // onClick={handleClick(result.recipe.label)}
-              >
+              <Link to={`/recipes/${id}`}>
                 <h2>{result.recipe.label}</h2>
                 <img src={result.recipe.image} alt="" />
                 <footer>
