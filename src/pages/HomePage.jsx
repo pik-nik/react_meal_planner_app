@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-export default function HomePage({ onSearch }) {
+export default function HomePage() {
   const [searchInput, setSearchInput] = useState([])
+  const navigate = useNavigate()
 
   const handleChange = ({ target }) => {
     setSearchInput(target.value)
@@ -10,13 +11,7 @@ export default function HomePage({ onSearch }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
-    fetch(
-      `https://api.edamam.com/search?q=${searchInput}&app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_API_KEY}&from=0&to=20`,
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        onSearch(res.hits)
-      })
+    navigate(`/search/${searchInput}`)
   }
 
   return (
