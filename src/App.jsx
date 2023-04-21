@@ -28,7 +28,7 @@ function App() {
           }
         />
         <Route
-          path="/recipes/:recipeName"
+          path="/recipes/:id"
           element={<RecipeDetailsPage results={results} />}
         />
         <Route

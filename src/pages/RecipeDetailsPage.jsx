@@ -1,8 +1,10 @@
 import { useParams } from 'react-router'
 export default function RecipeDetailsPage({ results }) {
-  const { recipeName } = useParams()
+  const { id } = useParams()
   const { recipe } = results.find((recipe) => {
-    return recipe.recipe.label === recipeName
+    const uri = recipe.recipe.uri
+    const idFromResults = uri.substring(uri.indexOf('_') + 1, uri.length)
+    return idFromResults === id
   })
   return (
     <div>
