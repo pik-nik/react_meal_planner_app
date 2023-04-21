@@ -1,38 +1,37 @@
-import { useState } from 'react'
-import './App.css'
-import HomePage from './pages/HomePage'
-import SearchResultsPage from './pages/SearchResultsPage'
+import { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import LogInPage from './pages/LogInPage'
-import NavBar from './components/NavBar'
-import RecipeDetailsPage from './pages/RecipeDetailsPage'
-import { Navigate } from 'react-router-dom'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '.'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
-import MealPlanPage from './pages/MealPlanPage'
-import Todo from './components/Todo'
 import MyRecipesPage from './pages/MyRecipesPage'
+import MealPlanPage from './pages/MealPlanPage'
+import SearchResultsPage from './pages/SearchResultsPage'
+import RecipeDetailsPage from './pages/RecipeDetailsPage'
+import NavBar from './components/NavBar'
+import './App.css'
 
 function App() {
   const [user, setUser] = useState(null)
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) setUser(user)
+    })
+  }, [])
 
   return (
     <div className="App">
-      <NavBar user={user} onLogOut={setUser} />
+      <NavBar user={user} onLogout={setUser} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search/:keyword" element={<SearchResultsPage />} />
         <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
         <Route path="/my-meal-plan" element={<MealPlanPage />} />
         <Route path="/my-recipes" element={<MyRecipesPage />} />
-        <Route
-          path="/login"
-          element={
-            !user ? <LogInPage onLogIn={setUser} /> : <Navigate to="/" />
-          }
-        />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
       </Routes>
-      <Todo />
     </div>
   )
 }

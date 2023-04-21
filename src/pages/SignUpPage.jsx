@@ -1,12 +1,34 @@
-export default function SignUpPage() {
+import { useNavigate } from 'react-router-dom'
+import { auth } from '..'
+
+export default function SignUpPage({ onLogin }) {
+  const [loginInfo, setLoginInfo] = useState({ email: '', password: '' })
+  const navigate = useNavigate()
+
+  const handleChange = ({ target }) => {
+    setLoginInfo({ ...loginInfo, [target.name]: target.value })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    createUserWithEmailAndPassword(auth, loginInfo.email, loginInfo.password)
+      .then((userCredential) => {
+        onLogin(userCredential.user)
+        navigate('/')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
   return (
     <section>
       <h1>Sign Up</h1>
-      <form>
-        <label htmlFor="">email</label>
-        <input type="text" value="" name="email" />
-        <label htmlFor="">password</label>
-        <input type="password" value="" name="password" />
+      <form onChange={handleChange} onSubmit={handleSubmit}>
+        <label htmlFor="">Email</label>
+        <input type="text" value={loginInfo.email} name="email" />
+        <label htmlFor="">Password</label>
+        <input type="password" value={loginInfo.password} name="password" />
         <button>Sign Up</button>
       </form>
     </section>
