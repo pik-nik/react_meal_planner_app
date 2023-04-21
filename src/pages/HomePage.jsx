@@ -21,7 +21,6 @@ export default function HomePage({ onSearch }) {
 
   return (
     <section>
-      <Link to="/login">Log In</Link>
       <h1>Find a recipe</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" onChange={handleChange} value={searchInput} />
