@@ -40,7 +40,7 @@ export default function RecipeDetailsPage({ results }) {
     <div>
       <h1>{recipe?.label}</h1>
       <button onClick={handleAdd} disabled={recipeAdded}>
-        Add Recipe to My Recipes
+        Add to My Recipes
       </button>
       {recipeAdded ? (
         <>
