@@ -12,7 +12,12 @@ export default function NavBar({ user, onLogOut }) {
       {!user ? (
         <Link to="/login">Log In</Link>
       ) : (
-        <button onClick={() => onLogOut(null)}>log out</button>
+        <>
+          <Link to="/my-meal-plan">
+            <p>My Meal Plan</p>
+          </Link>
+          <button onClick={() => onLogOut(null)}>log out</button>
+        </>
       )}
     </header>
   )
