@@ -44,7 +44,7 @@ export default function RecipeDetailsPage({ results }) {
       </button>
       {recipeAdded ? (
         <>
-          <Link to="/my-recipe-page">
+          <Link to="/my-recipes">
             <span>ADDED Go to My Recipes</span>
           </Link>
         </>
