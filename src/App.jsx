@@ -16,15 +16,9 @@ function App() {
     <div className="App">
       <NavBar user={user} onLogOut={setUser} />
       <Routes>
-        <Route path="/" element={<HomePage onSearch={setResults} />} />
-        <Route
-          path="/search/:keyword"
-          element={<SearchResultsPage results={results} />}
-        />
-        <Route
-          path="/recipes/:id"
-          element={<RecipeDetailsPage results={results} />}
-        />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search/:keyword" element={<SearchResultsPage />} />
+        <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
         <Route
           path="/login"
           element={
