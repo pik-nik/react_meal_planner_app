@@ -21,7 +21,7 @@ export default function RecipeDetailsPage({ results }) {
         setRecipe(res.hits[0].recipe)
       })
   }, [id])
-  // console.log(recipe)
+  console.log(recipe)
   const recipeCollectionsRef = collection(db, 'recipes')
   const handleAdd = async () => {
     try {
@@ -49,9 +49,11 @@ export default function RecipeDetailsPage({ results }) {
           </Link>
         </>
       ) : null}
+
       <p>
-        from {recipe?.source}: {recipe?.url}
+        Original Source: <Link to={recipe?.url}>{recipe?.source}</Link>
       </p>
+
       <img src={recipe?.image} alt="" />
       <ul>
         {recipe?.ingredientLines.map((ingredient, index) => {
