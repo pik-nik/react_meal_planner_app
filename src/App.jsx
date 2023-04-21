@@ -9,6 +9,7 @@ import RecipeDetailsPage from './pages/RecipeDetailsPage'
 import { Navigate } from 'react-router-dom'
 import SignUpPage from './pages/SignUpPage'
 import MealPlanPage from './pages/MealPlanPage'
+import Todo from './components/Todo'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -29,6 +30,7 @@ function App() {
         />
         <Route path="/signup" element={<SignUpPage />} />
       </Routes>
+      <Todo />
     </div>
   )
 }
