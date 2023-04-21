@@ -10,6 +10,7 @@ import { Navigate } from 'react-router-dom'
 import SignUpPage from './pages/SignUpPage'
 import MealPlanPage from './pages/MealPlanPage'
 import Todo from './components/Todo'
+import MyRecipesPage from './pages/MyRecipesPage'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -22,6 +23,7 @@ function App() {
         <Route path="/search/:keyword" element={<SearchResultsPage />} />
         <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
         <Route path="/my-meal-plan" element={<MealPlanPage />} />
+        <Route path="/my-recipe-page" element={<MyRecipesPage />} />
         <Route
           path="/login"
           element={
