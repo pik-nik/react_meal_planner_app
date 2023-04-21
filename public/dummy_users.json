@@ -1,0 +1,27 @@
+[
+  {
+    "email": "carl@ga.co",
+    "password": "pudding",
+    "password_digest": "$2b$10$MbbOO7uvLiIQyNgvMZSHxuM.z.cd7cDPYhZO9h6hRyD9D7WVEZO3W"
+  },
+  {
+    "email": "dimitri@ga.co",
+    "password": "pudding",
+    "password_digest": "$2b$10$MbbOO7uvLiIQyNgvMZSHxuM.z.cd7cDPYhZO9h6hRyD9D7WVEZO3W"
+  },
+  {
+    "email": "nikki@ga.co",
+    "password": "pudding",
+    "password_digest": "$2b$10$MbbOO7uvLiIQyNgvMZSHxuM.z.cd7cDPYhZO9h6hRyD9D7WVEZO3W"
+  },
+  {
+    "email": "valentina@ga.co",
+    "password": "pudding",
+    "password_digest": "$2b$10$MbbOO7uvLiIQyNgvMZSHxuM.z.cd7cDPYhZO9h6hRyD9D7WVEZO3W"
+  },
+  {
+    "email": "jack@ga.co",
+    "password": "pudding",
+    "password_digest": "$2b$10$MbbOO7uvLiIQyNgvMZSHxuM.z.cd7cDPYhZO9h6hRyD9D7WVEZO3W"
+  }
+]

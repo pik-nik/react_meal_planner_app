@@ -6,6 +6,8 @@ import { Routes, Route } from 'react-router-dom'
 import LogInPage from './pages/LogInPage'
 import NavBar from './components/NavBar'
 import RecipeDetailsPage from './pages/RecipeDetailsPage'
+import { Navigate } from 'react-router-dom'
+import SignUpPage from './pages/SignUpPage'
 
 function App() {
   const [results, setResults] = useState(null)
@@ -13,7 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} />
+      <NavBar user={user} onLogOut={setUser} />
       <Routes>
         <Route
           path="/"
@@ -29,7 +31,13 @@ function App() {
           path="/recipes/:recipeName"
           element={<RecipeDetailsPage results={results} />}
         />
-        <Route path="/login" element={<LogInPage onLogIn={setUser} />} />
+        <Route
+          path="/login"
+          element={
+            !user ? <LogInPage onLogIn={setUser} /> : <Navigate to="/" />
+          }
+        />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </div>
   )
