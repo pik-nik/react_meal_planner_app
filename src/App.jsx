@@ -8,6 +8,7 @@ import NavBar from './components/NavBar'
 import RecipeDetailsPage from './pages/RecipeDetailsPage'
 import { Navigate } from 'react-router-dom'
 import SignUpPage from './pages/SignUpPage'
+import MealPlanPage from './pages/MealPlanPage'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/search/:keyword" element={<SearchResultsPage />} />
         <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
+        <Route path="/my-meal-plan" element={<MealPlanPage />} />
         <Route
           path="/login"
           element={
