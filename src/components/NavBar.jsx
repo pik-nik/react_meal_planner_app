@@ -13,6 +13,9 @@ export default function NavBar({ user, onLogOut }) {
         <Link to="/login">Log In</Link>
       ) : (
         <>
+          <Link to="/my-recipes">
+            <p>My Recipes</p>
+          </Link>
           <Link to="/my-meal-plan">
             <p>My Meal Plan</p>
           </Link>
