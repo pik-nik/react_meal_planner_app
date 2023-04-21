@@ -5,6 +5,7 @@ import SearchResultsPage from './pages/SearchResultsPage'
 import { Routes, Route } from 'react-router-dom'
 import LogInPage from './pages/LogInPage'
 import NavBar from './components/NavBar'
+import RecipeDetailsPage from './pages/RecipeDetailsPage'
 
 function App() {
   const [results, setResults] = useState(null)
@@ -23,6 +24,10 @@ function App() {
               <SearchResultsPage results={results} />
             )
           }
+        />
+        <Route
+          path="/recipes/:recipeName"
+          element={<RecipeDetailsPage results={results} />}
         />
         <Route path="/login" element={<LogInPage onLogIn={setUser} />} />
       </Routes>
