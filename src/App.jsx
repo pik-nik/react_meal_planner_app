@@ -10,22 +10,16 @@ import { Navigate } from 'react-router-dom'
 import SignUpPage from './pages/SignUpPage'
 
 function App() {
-  const [results, setResults] = useState(null)
   const [user, setUser] = useState(null)
 
   return (
     <div className="App">
       <NavBar user={user} onLogOut={setUser} />
       <Routes>
+        <Route path="/" element={<HomePage onSearch={setResults} />} />
         <Route
-          path="/"
-          element={
-            !results ? (
-              <HomePage onSearch={setResults} />
-            ) : (
-              <SearchResultsPage results={results} />
-            )
-          }
+          path="/search/:keyword"
+          element={<SearchResultsPage results={results} />}
         />
         <Route
           path="/recipes/:id"

@@ -1,6 +1,18 @@
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
-export default function SearchResultsPage({ results }) {
+export default function SearchResultsPage() {
+  const [results, setResults] = useState([])
+  const { keyword } = useParams()
+  useEffect(() => {
+    fetch(
+      `https://api.edamam.com/search?q=${keyword}&app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_API_KEY}&from=0&to=20`,
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setResults(res.hits)
+      })
+  }, [keyword])
   return (
     <section>
       <ul>
