@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '..'
+import '../css/SignUpPage.css'
 
 export default function SignUpPage({ onLogin }) {
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' })
@@ -24,7 +25,7 @@ export default function SignUpPage({ onLogin }) {
   }
 
   return (
-    <section>
+    <section className="signup-section">
       <h1>Sign Up</h1>
       <form onChange={handleChange} onSubmit={handleSubmit}>
         <label htmlFor="">Email</label>
