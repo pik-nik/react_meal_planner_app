@@ -7,13 +7,12 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import '../css/NavBar.css'
 
-export default function NavBar({ user, onLogout }) {
+export default function NavBar({ user, onLoad }) {
   const navigate = useNavigate()
 
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        onLogout(null)
         navigate('/')
       })
       .catch((error) => console.log(error))
@@ -23,55 +22,53 @@ export default function NavBar({ user, onLogout }) {
     <header className="navbar-header">
       <Navbar expand="lg" className="menu" sticky="top">
         <Container className="container">
-          {user ? (
-            <>
-              <Navbar.Brand>
-                <span>hello {user.email}</span>
-              </Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                  <NavDropdown title="Menu" id="basic-nav-dropdown">
-                    <NavDropdown.Item>
-                      <Link to="/">Serach Recipes</Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to="/my-recipes">My Recipes</Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to="/my-meal-plan">My Meal Plan</Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to="/my-meal-plan">My Meal Plan</Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item>
-                      <button onClick={handleLogout}>Log out</button>
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-              </Navbar.Collapse>
-            </>
-          ) : (
-            <>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                  <NavDropdown title="Menu" id="basic-nav-dropdown">
-                    <NavDropdown.Item>
-                      <Link to="/">Serach Recipes</Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to="/login">Log in</Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to="/signup">Sign Ip</Link>
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-              </Navbar.Collapse>
-            </>
-          )}
+          <Navbar.Brand>
+            <h1>React Meal Plan app</h1>
+          </Navbar.Brand>
+          <Link to="/">Home</Link>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <NavDropdown title="Menu" id="basic-nav-dropdown">
+                {onLoad ? (
+                  <NavDropdown.Item>
+                    <p>Loading...</p>
+                  </NavDropdown.Item>
+                ) : (
+                  <>
+                    {user ? (
+                      <>
+                        <NavDropdown.Item>
+                          <Link to={`/user/${user.uid}`}>
+                            Hello {user.displayName}
+                          </Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                          <Link to="/my-recipes">My Recipes</Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                          <Link to="/my-meal-plans">My Meal Plans</Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item>
+                          <button onClick={handleLogout}>Log out</button>
+                        </NavDropdown.Item>
+                      </>
+                    ) : (
+                      <>
+                        <NavDropdown.Item>
+                          <Link to="/login">Log in</Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                          <Link to="/signup">Sign Up</Link>
+                        </NavDropdown.Item>
+                      </>
+                    )}
+                  </>
+                )}
+              </NavDropdown>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </header>

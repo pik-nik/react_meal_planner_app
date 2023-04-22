@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '..'
 import '../css/SignUpPage.css'
 
-export default function SignUpPage({ onLogin }) {
+export default function SignUpPage() {
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' })
   const navigate = useNavigate()
 
@@ -15,8 +15,16 @@ export default function SignUpPage({ onLogin }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     createUserWithEmailAndPassword(auth, loginInfo.email, loginInfo.password)
-      .then((userCredential) => {
-        onLogin(userCredential.user)
+      .then((res) => {
+        updateProfile(res.user, {
+          displayName: loginInfo.email
+            .substring(0, loginInfo.email.indexOf('@'))
+            .replace('.', ''),
+          photoURL:
+            'https://res.cloudinary.com/doznt5vd0/image/upload/v1682155060/react_meal_plan_app/defaultUser_h6sccb.jpg',
+        })
+      })
+      .then(() => {
         navigate('/')
       })
       .catch((error) => {
