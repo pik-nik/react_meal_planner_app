@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { db } from '../index'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import Pagination from '../components/Pagination'
 import '../css/SearchResultsPage.css'
 import Button from 'react-bootstrap/Button'
@@ -45,6 +45,7 @@ export default function SearchResultsPage() {
         edamam_id: id,
         image: recipe.image,
         user_id: 1, // hardcoded user id for now
+        createdAt: serverTimestamp(),
       })
     } catch (err) {
       console.log(err)
