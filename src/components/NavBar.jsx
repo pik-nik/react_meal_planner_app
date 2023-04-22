@@ -21,7 +21,7 @@ export default function NavBar({ user, onLogout }) {
 
   return (
     <header className="navbar-header">
-      <Navbar bg="light" expand="lg" className="menu" sticky="top">
+      <Navbar expand="lg" className="menu" sticky="top">
         <Container className="container">
           {user ? (
             <>
@@ -32,14 +32,20 @@ export default function NavBar({ user, onLogout }) {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                   <NavDropdown title="Menu" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">
+                    <NavDropdown.Item>
+                      <Link to="/">Serach Recipes</Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
                       <Link to="/my-recipes">My Recipes</Link>
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">
-                      <Link to="/my-meal-plans">My Meal Plans</Link>
+                    <NavDropdown.Item>
+                      <Link to="/my-meal-plan">My Meal Plan</Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to="/my-meal-plan">My Meal Plan</Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.3">
+                    <NavDropdown.Item>
                       <button onClick={handleLogout}>Log out</button>
                     </NavDropdown.Item>
                   </NavDropdown>
@@ -52,14 +58,14 @@ export default function NavBar({ user, onLogout }) {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                   <NavDropdown title="Menu" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">
-                      <Link to="/">Search Recipes</Link>
+                    <NavDropdown.Item>
+                      <Link to="/">Serach Recipes</Link>
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">
+                    <NavDropdown.Item>
                       <Link to="/login">Log in</Link>
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">
-                      <Link to="/signup">Sign Up</Link>
+                    <NavDropdown.Item>
+                      <Link to="/signup">Sign Ip</Link>
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
