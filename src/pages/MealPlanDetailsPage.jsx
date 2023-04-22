@@ -7,9 +7,6 @@ export default function MealPlanPage() {
   const mealPlansRef = collection(db, 'mealplans')
   const { id } = useParams()
   const [mealPlan, setMealPlan] = useState({})
-  // const [columnOrder, setColumnOrder] = useState([])
-  // const [columns, setColumns] = useState({})
-  // const [recipes, setRecpes] = useState({})
 
   const getMealPlan = async () => {
     try {
@@ -34,13 +31,9 @@ export default function MealPlanPage() {
     <section>
       <h1>Meal Plan</h1>
       <div className="column-container">
-        {mealPlan.columnOrder?.map((day) => {
+        {mealPlan.column_order?.map((day) => {
           const column = mealPlan.columns[day]
-          // console.log(column)
-
-          const recipes = column.recipeIds.map((id) => mealPlan.recipes[id])
-          // console.log(mealPlan)
-          // console.log(recipes)
+          const recipes = column.recipe_ids.map((id) => mealPlan.recipes[id])
           return (
             <div key={day} className="column-title">
               <h2>{day}</h2>
