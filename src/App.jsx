@@ -6,12 +6,13 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LogInPage'
 import SignUpPage from './pages/SignUpPage'
 import MyRecipesPage from './pages/MyRecipesPage'
-import MealPlanPage from './pages/MealPlanPage'
+import MealPlanDetailsPage from './pages/MealPlanDetailsPage'
 import SearchResultsPage from './pages/SearchResultsPage'
 import RecipeDetailsPage from './pages/RecipeDetailsPage'
 import NavBar from './components/NavBar'
 import './css/App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import MyMealPlans from './pages/MyMealPlans'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -28,10 +29,11 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/search/:keyword" element={<SearchResultsPage />} />
         <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
-        <Route path="/my-meal-plan" element={<MealPlanPage />} />
         <Route path="/my-recipes" element={<MyRecipesPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/my-meal-plans" element={<MyMealPlans />} />
+        <Route path="/my-meal-plans/:id" element={<MealPlanDetailsPage />} />
       </Routes>
     </div>
   )
