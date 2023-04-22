@@ -104,7 +104,7 @@ export default function SearchResultsPage() {
                         ) : null}
                       </footer>
                     </Link>
-                    {console.log(result.recipe.dietLabels)}
+                    {/* {console.log(result.recipe.dietLabels)} */}
                     <div>
                       <Button
                         variant="primary"
