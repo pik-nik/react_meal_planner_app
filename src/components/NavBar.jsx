@@ -36,13 +36,10 @@ export default function NavBar({ user, onLogout }) {
                       <Link to="/my-recipes">My Recipes</Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
-                      <Link to="/my-meal-plan">My Meal Plan</Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">
-                      <Link to="/my-meal-plan">My Meal Plan</Link>
+                      <Link to="/my-meal-plans">My Meal Plans</Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">
+                    <NavDropdown.Item href="#action/3.3">
                       <button onClick={handleLogout}>Log out</button>
                     </NavDropdown.Item>
                   </NavDropdown>
@@ -56,13 +53,13 @@ export default function NavBar({ user, onLogout }) {
                 <Nav className="me-auto">
                   <NavDropdown title="Menu" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">
-                      <Link to="/">Serach Recipes</Link>
+                      <Link to="/">Search Recipes</Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
                       <Link to="/login">Log in</Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">
-                      <Link to="/signup">Sign Ip</Link>
+                      <Link to="/signup">Sign Up</Link>
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
