@@ -13,7 +13,7 @@ export default function NavBar({ user, onLoad }) {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        navigate('/')
+        navigate('/login')
       })
       .catch((error) => console.log(error))
   }

@@ -17,20 +17,20 @@ import MyMealPlans from './pages/MyMealPlans'
 
 function App() {
   const [user, setUser] = useState(null)
-  const [loadingUser, setLoadingUser] = useState(true)
+  const [isLoadingUser, setIsLoadingUser] = useState(true)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      setLoadingUser(true)
+      setIsLoadingUser(true)
       if (user) setUser(user)
       else setUser(null)
-      setLoadingUser(false)
+      setIsLoadingUser(false)
     })
   }, [])
 
   return (
     <div className="App">
-      <NavBar user={user} onLoad={loadingUser} />
+      <NavBar user={user} onLoad={isLoadingUser} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search/:keyword" element={<SearchResultsPage />} />
@@ -40,7 +40,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route
           path="/user/:uid"
-          element={<UserPage user={user} onLoad={loadingUser} />}
+          element={<UserPage user={user} onLoad={isLoadingUser} />}
         />
         <Route path="/my-meal-plans" element={<MyMealPlans />} />
         <Route path="/my-meal-plans/:id" element={<MealPlanDetailsPage />} />

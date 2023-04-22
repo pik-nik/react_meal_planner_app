@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { auth } from '..'
+import { ref, getDownloadURL } from 'firebase/storage'
+import { auth, storage } from '..'
 import '../css/SignUpPage.css'
 
 export default function SignUpPage() {
@@ -12,20 +13,22 @@ export default function SignUpPage() {
     setLoginInfo({ ...loginInfo, [target.name]: target.value })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
+    const defaultPath = ref(storage, 'defaultUser.jpg')
+    const defaultURL = await getDownloadURL(defaultPath)
     createUserWithEmailAndPassword(auth, loginInfo.email, loginInfo.password)
       .then((res) => {
         updateProfile(res.user, {
           displayName: loginInfo.email
             .substring(0, loginInfo.email.indexOf('@'))
             .replace('.', ''),
-          photoURL:
-            'https://res.cloudinary.com/doznt5vd0/image/upload/v1682155060/react_meal_plan_app/defaultUser_h6sccb.jpg',
+          photoURL: defaultURL,
         })
+        return res.user.uid
       })
-      .then(() => {
-        navigate('/')
+      .then((uid) => {
+        navigate(`/user/${uid}`)
       })
       .catch((error) => {
         console.log(error)
