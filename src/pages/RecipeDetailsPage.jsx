@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { db } from '../index'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
@@ -26,6 +26,7 @@ export default function RecipeDetailsPage({ results }) {
         edamam_id: id,
         image: recipe.image,
         user_id: 1, // hardcoded user id for now
+        createdAt: serverTimestamp(),
       })
     } catch (err) {
       console.log(err)
