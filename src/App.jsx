@@ -5,6 +5,7 @@ import { auth } from '.'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
+import UserPage from './pages/UserPage'
 import MyRecipesPage from './pages/MyRecipesPage'
 import MealPlanDetailsPage from './pages/MealPlanDetailsPage'
 import SearchResultsPage from './pages/SearchResultsPage'
@@ -37,6 +38,10 @@ function App() {
         <Route path="/my-recipes" element={<MyRecipesPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route
+          path="/user/:uid"
+          element={<UserPage user={user} onLoad={loadingUser} />}
+        />
         <Route path="/my-meal-plans" element={<MyMealPlans />} />
         <Route path="/my-meal-plans/:id" element={<MealPlanDetailsPage />} />
       </Routes>
