@@ -43,7 +43,7 @@ export default function MyMealPlans() {
     try {
       await addDoc(mealPlansRef, {
         name: selectedPlan,
-        columnOrder: [
+        column_order: [
           'Monday',
           'Tuesday',
           'Wednesday',
@@ -53,13 +53,13 @@ export default function MyMealPlans() {
           'Sunday',
         ],
         columns: {
-          Monday: { id: uuid(), day: 'Monday', recipeIds: [] },
-          Tuesday: { id: uuid(), day: 'Tuesday', recipeIds: [] },
-          Wednesday: { id: uuid(), day: 'Wednesday', recipeIds: [] },
-          Thursday: { id: uuid(), day: 'Thursday', recipeIds: [] },
-          Friday: { id: uuid(), day: 'Friday', recipeIds: [] },
-          Saturday: { id: uuid(), day: 'Saturday', recipeIds: [] },
-          Sunday: { id: uuid(), day: 'Sunday', recipeIds: [] },
+          Monday: { id: uuid(), day: 'Monday', recipe_ids: [] },
+          Tuesday: { id: uuid(), day: 'Tuesday', recipe_ids: [] },
+          Wednesday: { id: uuid(), day: 'Wednesday', recipe_ids: [] },
+          Thursday: { id: uuid(), day: 'Thursday', recipe_ids: [] },
+          Friday: { id: uuid(), day: 'Friday', recipe_ids: [] },
+          Saturday: { id: uuid(), day: 'Saturday', recipe_ids: [] },
+          Sunday: { id: uuid(), day: 'Sunday', recipe_ids: [] },
         },
         recipes: {}, // contains id: {id: ... name: ... } maybe whole thing from my recipes?
         user: 1, // use userid or username
