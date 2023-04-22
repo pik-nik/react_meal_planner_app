@@ -7,6 +7,9 @@ export default function MealPlanPage() {
   const mealPlansRef = collection(db, 'mealplans')
   const { id } = useParams()
   const [mealPlan, setMealPlan] = useState({})
+  // const [columnOrder, setColumnOrder] = useState([])
+  // const [columns, setColumns] = useState({})
+  // const [recipes, setRecpes] = useState({})
 
   const getMealPlan = async () => {
     try {
@@ -16,8 +19,8 @@ export default function MealPlanPage() {
       querySnapshot.forEach((doc) => {
         data.push({ ...doc.data(), id: doc.id })
       })
-      console.log(data[0])
-      setMealPlan(data[0])
+      // console.log(data[0])
+      setMealPlan(data[0]) // sets meal plan to the meal plan which is given in object
     } catch (err) {
       console.log(err)
     }
@@ -32,10 +35,22 @@ export default function MealPlanPage() {
       <h1>Meal Plan</h1>
       <div className="column-container">
         {mealPlan.columnOrder?.map((day) => {
-          const column = mealPlan.columns[day] // change datastructure of columns
+          const column = mealPlan.columns[day]
+          // console.log(column)
 
-          console.log(column) // undefined
-          return <div key={day}>{day}</div>
+          const recipes = column.recipeIds.map((id) => mealPlan.recipes[id])
+          // console.log(mealPlan)
+          // console.log(recipes)
+          return (
+            <div key={day} className="column-title">
+              <h2>{day}</h2>
+              <div className="recipe-list">
+                {recipes.map((recipe, index) => {
+                  return <div key={recipe.id}>{recipe.name}</div>
+                })}
+              </div>
+            </div>
+          )
         })}
       </div>
     </section>

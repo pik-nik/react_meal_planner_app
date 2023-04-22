@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { db } from '../index'
 import { getDocs, collection, addDoc, deleteDoc, doc } from 'firebase/firestore'
+import { v4 as uuid } from 'uuid'
 export default function MyMealPlans() {
   const [mealPlans, setMealPlans] = useState([])
   const [showAddPlan, setShowAddPlan] = useState(false)
@@ -52,15 +53,15 @@ export default function MyMealPlans() {
           'Sunday',
         ],
         columns: {
-          //   Monday: {},
-          //   Tuesday: {},
-          //   Wednesday: {},
-          //   Thursday: {},
-          //   Friday: {},
-          //   Saturday: {},
-          //   Sunday: {},
+          Monday: { id: uuid(), day: 'Monday', recipeIds: [] },
+          Tuesday: { id: uuid(), day: 'Tuesday', recipeIds: [] },
+          Wednesday: { id: uuid(), day: 'Wednesday', recipeIds: [] },
+          Thursday: { id: uuid(), day: 'Thursday', recipeIds: [] },
+          Friday: { id: uuid(), day: 'Friday', recipeIds: [] },
+          Saturday: { id: uuid(), day: 'Saturday', recipeIds: [] },
+          Sunday: { id: uuid(), day: 'Sunday', recipeIds: [] },
         },
-        recipes: [],
+        recipes: {}, // contains id: {id: ... name: ... } maybe whole thing from my recipes?
         user: 1, // use userid or username
       })
       getMealPlans()
