@@ -16,15 +16,20 @@ import MyMealPlans from './pages/MyMealPlans'
 
 function App() {
   const [user, setUser] = useState(null)
+  const [loadingUser, setLoadingUser] = useState(true)
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      setLoadingUser(true)
       if (user) setUser(user)
+      else setUser(null)
+      setLoadingUser(false)
     })
   }, [])
 
   return (
     <div className="App">
-      <NavBar user={user} onLogout={setUser} />
+      <NavBar user={user} onLoad={loadingUser} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search/:keyword" element={<SearchResultsPage />} />

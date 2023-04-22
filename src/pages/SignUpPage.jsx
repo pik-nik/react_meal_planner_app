@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '..'
 import '../css/SignUpPage.css'
 
-export default function SignUpPage({ onLogin }) {
+export default function SignUpPage() {
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' })
   const navigate = useNavigate()
 
@@ -15,8 +15,7 @@ export default function SignUpPage({ onLogin }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     createUserWithEmailAndPassword(auth, loginInfo.email, loginInfo.password)
-      .then((userCredential) => {
-        onLogin(userCredential.user)
+      .then(() => {
         navigate('/')
       })
       .catch((error) => {

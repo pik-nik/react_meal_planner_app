@@ -7,13 +7,12 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import '../css/NavBar.css'
 
-export default function NavBar({ user, onLogout }) {
+export default function NavBar({ user }) {
   const navigate = useNavigate()
 
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        onLogout(null)
         navigate('/')
       })
       .catch((error) => console.log(error))

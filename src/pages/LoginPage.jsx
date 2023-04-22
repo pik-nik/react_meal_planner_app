@@ -5,7 +5,7 @@ import { auth } from '..'
 import AlertDismissible from '../components/AlertDismissible'
 import '../css/LogInPage.css'
 
-export default function LoginPage({ onLogin }) {
+export default function LoginPage() {
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
   const navigate = useNavigate()
@@ -17,8 +17,7 @@ export default function LoginPage({ onLogin }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     signInWithEmailAndPassword(auth, loginInfo.email, loginInfo.password)
-      .then((userCredential) => {
-        const user = userCredential.user
+      .then(() => {
         navigate('/')
       })
       .catch((error) => {
