@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
+import '../css/HomePage.css'
 export default function HomePage() {
   const [searchInput, setSearchInput] = useState([])
   const navigate = useNavigate()
@@ -15,10 +15,15 @@ export default function HomePage() {
   }
 
   return (
-    <section>
-      <h1>Find a recipe</h1>
+    <section className="search-bar-section">
+      <h1 className="search-bar-title">Find a recipe</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={handleChange} value={searchInput} />
+        <input
+          type="text"
+          onChange={handleChange}
+          value={searchInput}
+          className="input-box"
+        />
         <button>Search</button>
       </form>
     </section>

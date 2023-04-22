@@ -3,13 +3,15 @@ import { Link, useParams } from 'react-router-dom'
 import { db } from '../index'
 import { addDoc, collection } from 'firebase/firestore'
 import Pagination from '../components/Pagination'
-
+import '../css/SearchResultsPage.css'
 export default function SearchResultsPage() {
   const [results, setResults] = useState([])
   const [recipeAdded, setRecipeAdded] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [resultsPerPage] = useState(10)
   const [loading, setLoading] = useState(false)
+  const [diplayResults, setDisplayResults] = useState(true)
+
   const { keyword } = useParams()
   useEffect(() => {
     setLoading(true)
@@ -47,25 +49,39 @@ export default function SearchResultsPage() {
     event.preventDefault()
     setCurrentPage(pageNumber)
   }
+
+  const handleDisplay = () => {
+    setDisplayResults(!diplayResults)
+  }
+
   return (
-    <section>
-      <h1>Search Results</h1>
+    <section className="results-section">
+      <header>
+        <h1>Search Results</h1>
+        <div>
+          <button className="list" onClick={handleDisplay}>
+            {diplayResults ? 'Title' : 'List'}
+          </button>
+        </div>
+      </header>
       {loading ? (
         <h3>Loading...</h3>
       ) : (
         <>
-          <ul>
+          <ul className={diplayResults ? 'display-list' : 'display-title'}>
             {currentResults.map((result, index) => {
               const uri = result.recipe.uri
               const id = uri.substring(uri.indexOf('_') + 1, uri.length)
               return (
                 <li key={index}>
                   <Link to={`/recipes/${id}`}>
-                    <h2>{result.recipe.label}</h2>
-                    <img src={result.recipe.image} alt="" />
+                    <div>
+                      <img src={result.recipe.image} alt="" />
+                    </div>
                     <footer>
+                      <h2>{result.recipe.label}</h2>
                       <span>{result.recipe.dietLabels}</span>
-                      <span>{result.recipe.totalTime}</span>
+                      <span>Made in {result.recipe.totalTime} mins</span>
                     </footer>
                   </Link>
                   <button

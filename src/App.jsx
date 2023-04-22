@@ -10,7 +10,8 @@ import MealPlanPage from './pages/MealPlanPage'
 import SearchResultsPage from './pages/SearchResultsPage'
 import RecipeDetailsPage from './pages/RecipeDetailsPage'
 import NavBar from './components/NavBar'
-import './App.css'
+import './css/App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   const [user, setUser] = useState(null)
