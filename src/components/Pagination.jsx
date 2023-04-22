@@ -1,4 +1,4 @@
-import './Pagination.css'
+import '../css/Pagination.css'
 export default function Pagination({ resultsPerPage, totalResults, paginate }) {
   const pageNumbers = []
   for (let i = 1; i <= Math.ceil(totalResults / resultsPerPage); i++) {

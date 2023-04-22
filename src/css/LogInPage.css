@@ -1,4 +1,4 @@
-.search-bar-section {
+.login-section {
   width: 60%;
   margin: 60px auto;
   padding: 20px;
@@ -13,26 +13,39 @@
   -webkit-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
   border: 1px solid black;
+  flex-wrap: wrap;
 }
-.search-bar-title {
+/* @media screen and (min-width: 768px) {
+  .login-section form {
+    flex-basis: 50%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .login-section form {
+    flex-basis: calc(
+      100% / 3
+    ); 
+  }
+} */
+.login-title {
   font-family: 'Noto Serif', serif;
   font-size: 2rem;
   font-weight: 600;
   color: #091e42;
 }
-.search-bar-section form {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
+.login-section form {
+  flex-basis: 100%;
   border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
 }
-.input-box {
-  width: 80%;
+.login-section form input {
   border-radius: 10px;
   border: 1px solid black;
   color: #091e42;
+  margin: 0 6px;
 }
-.search-bar-section form button {
+.login-section form button {
   border-radius: 10px;
   margin-left: 15px;
   border: 1px solid black;

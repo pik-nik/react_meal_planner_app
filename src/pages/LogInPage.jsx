@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '..'
+import '../css/LogInPage.css'
 
 export default function LoginPage({ onLogin }) {
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' })
@@ -24,8 +25,8 @@ export default function LoginPage({ onLogin }) {
   }
 
   return (
-    <section>
-      <h1>Log In</h1>
+    <section className="login-section">
+      <h1 className="login-title">Log In</h1>
       <form onChange={handleChange} onSubmit={handleSubmit}>
         <label htmlFor="">Email</label>
         <input type="text" value={loginInfo.email} name="email" />
@@ -33,7 +34,6 @@ export default function LoginPage({ onLogin }) {
         <input type="password" value={loginInfo.password} name="password" />
         <button>Login</button>
       </form>
-      <Link to="/signup">Sign Ip</Link>
     </section>
   )
 }

@@ -60,6 +60,9 @@ export default function NavBar({ user, onLogout }) {
                     <NavDropdown.Item href="#action/3.2">
                       <Link to="/login">Log in</Link>
                     </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">
+                      <Link to="/signup">Sign Ip</Link>
+                    </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
               </Navbar.Collapse>
