@@ -7,3 +7,15 @@
   padding: 6px;
   cursor: pointer;
 }
+.navbar-header a {
+  text-decoration: none;
+  color: #091e42;
+}
+.navbar-header .menu {
+  border-radius: 10px;
+}
+.navbar-header .menu .container {
+  border-radius: 10px;
+  background-color: #e6fcff;
+  border: 1px solid black;
+}

@@ -9,8 +9,14 @@
 .results-section * {
   color: #091e42;
 }
+.results-section header {
+  background-color: #eae6ff;
+  padding: 5px 10px;
+  border: 1px solid black;
+}
 .results-section header h1 {
   font-size: 1.7rem;
+  margin: 0;
 }
 
 .results-section header div button {
@@ -21,7 +27,25 @@
   display: flex;
   flex-direction: column;
 }
-.results-section .display-list {
+
+.results-section .display-title {
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+.results-section .display-title li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.results-section .display-title li a {
+  text-align: center;
+}
+
+.results-section .display-list,
+.results-section .display-title {
   background-color: #8993a4;
   box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
@@ -34,7 +58,9 @@
   padding: 10px;
   margin-bottom: 20px;
 }
-.results-section .display-list li {
+
+.results-section .display-list li,
+.results-section .display-title li {
   list-style: none;
   margin: 10px;
   background-color: #e6fcff;
@@ -50,15 +76,16 @@
   display: flex;
   flex-direction: row;
 }
-.display-list li button {
+.display-list li button,
+.display-title li button {
   margin-top: 20px;
   border-radius: 10px;
   background-color: #eae6ff;
   color: #091e42;
 }
 .display-list li a div {
-  width: 300px;
-  height: 200px;
+  width: 100px;
+  height: 1-0px;
   overflow: hidden;
   border-radius: 10px;
 }
@@ -68,6 +95,11 @@
   object-fit: cover;
   border-radius: 10px;
 }
+.display-title li a footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .display-list li a footer {
   display: flex;
   flex-direction: column;
@@ -76,11 +108,14 @@
   padding-right: 10px;
   width: 100%;
 }
-.display-list li a footer h2 {
-  font-size: 1.5rem;
+.display-list li a footer h2,
+.display-title li a footer h2 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
-.display-list li a footer span {
-  font-size: 1rem;
+.display-list li a footer span,
+.display-title li a footer span {
+  font-size: 0.8rem;
 }
 .results-section nav {
   width: 80%;
