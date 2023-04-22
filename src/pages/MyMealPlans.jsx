@@ -36,7 +36,6 @@ export default function MyMealPlans() {
     setSelectedPlan('')
   }
 
-  //   const mealPlansRef = collection(db, 'mealplans')
   const handleSubmit = async (e) => {
     e.preventDefault()
     setShowAddPlan(false)
@@ -61,7 +60,7 @@ export default function MyMealPlans() {
           //   Saturday: {},
           //   Sunday: {},
         },
-        meals: {},
+        recipes: [],
         user: 1, // use userid or username
       })
       getMealPlans()
