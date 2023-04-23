@@ -11,33 +11,12 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import '../css/MealPlanDetailsPage.css'
+import { v4 as uuid } from 'uuid'
 
-var recipeDatabase = {}
-var columnsFromBackend = {
-  Monday: {},
-  Tuesday: {},
-  Wednesday: {},
-  Thursday: {},
-  Friday: {},
-  Saturday: {},
-  Sunday: {},
-}
-console.log('columns from backend', columnsFromBackend)
-// const columnOrder = [
-//   'Monday',
-//   'Tuesday',
-//   'Wednesday',
-//   'Thursday',
-//   'Friday',
-//   'Saturday',
-//   'Sunday',
-// ]
 export default function MealPlanPage() {
   const mealPlansRef = collection(db, 'mealplans')
   const { id } = useParams()
-  const [columns, setColumns] = useState({})
   const [mealPlan, setMealPlan] = useState({})
-  const [recipes, setRecipes] = useState({})
   const getMealPlan = async () => {
     try {
       const q = query(mealPlansRef, where('__name__', '==', id))
@@ -45,27 +24,7 @@ export default function MealPlanPage() {
       querySnapshot.forEach((doc) => {
         console.log('doc.data() or mealPlan', doc.data())
         setMealPlan(doc.data())
-        console.log(doc.data().columns)
-        // setColumns(doc.data().columns)
-        // setRecipes(doc.data().recipes)
-
-        // Object.values(doc.data().recipes).forEach((recipe) => {
-        //   recipeDatabase[recipe.edamam_id] = recipe.name
-        //   console.log('recipe', recipe)
-        // })
-        // console.log('recipeDatabase', recipeDatabase)
-        // for (const [key, value] of Object.entries(doc.data().columns)) {
-        //   const recipes = []
-        //   value.recipe_ids.forEach((recipe) =>
-        //     recipes.push({
-        //       id: recipe,
-        //       content: recipeDatabase[recipe],
-        //     }),
-        //   )
-        // columnsFromBackend[key] = { name: key, items: recipes }
-        // }
       })
-      // setColumns(columnsFromBackend)
     } catch (err) {
       console.log(err)
     }
@@ -106,11 +65,6 @@ export default function MealPlanPage() {
       const destItems = [...destColumn.recipe_ids]
       const [removed] = sourceItems.splice(source.index, 1)
       destItems.splice(destination.index, 0, removed)
-      // setColumns({
-      //   ...columns,
-      //   [source.droppableId]: { ...sourceColumn, items: sourceItems },
-      //   [destination.droppableId]: { ...destColumn, items: destItems },
-      // })
       const newMealPlan = { ...mealPlan }
       newMealPlan.columns[source.droppableId].recipe_ids = sourceItems
       newMealPlan.columns[destination.droppableId].recipe_ids = destItems
@@ -121,7 +75,6 @@ export default function MealPlanPage() {
       const copiedRecipeIds = [...column.recipe_ids]
       const [removed] = copiedRecipeIds.splice(source.index, 1)
       copiedRecipeIds.splice(destination.index, 0, removed)
-
       const newMealPlan = { ...mealPlan }
       newMealPlan.columns[source.droppableId].recipe_ids = copiedRecipeIds
       setMealPlan(newMealPlan)
@@ -156,7 +109,7 @@ export default function MealPlanPage() {
                         {recipes.map((recipe, index) => {
                           return (
                             <Draggable
-                              key={recipe.id}
+                              key={uuid()}
                               draggableId={recipe.id}
                               index={index}
                             >
@@ -200,24 +153,5 @@ export default function MealPlanPage() {
         })}
       </DragDropContext>
     </div>
-    // <section className="DND">
-    //   <h1>Meal Plan</h1>
-    //   <div className="column-container">
-    //     {mealPlan.column_order?.map((day) => {
-    //       const column = mealPlan.columns[day]
-    //       const recipes = column.recipe_ids.map((id) => mealPlan.recipes[id])
-    //       return (
-    //         <div key={day} className="column-title">
-    //           <h2>{day}</h2>
-    //           <div className="recipe-list">
-    //             {recipes.map((recipe, index) => {
-    //               return <div key={recipe.id}>{recipe.name}</div>
-    //             })}
-    //           </div>
-    //         </div>
-    //       )
-    //     })}
-    //   </div>
-    // </section>
   )
 }
