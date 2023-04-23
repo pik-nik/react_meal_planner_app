@@ -30,24 +30,17 @@ export default function MealPlanPage() {
     }
   }
 
-  // const removeRecipe = (index, day) => {
-  //   const newColumns = {
-  //     ...columns,
-  //     [columns[day]]: columns[day].items.filter((_, i) => i !== index),
-  //   }
-  //   setColumns(newColumns)
-  // }
-
-  // IN PROGRESS
-  // const handleRemove = (recipe, index, day) => {
-  //   // this is an update not delete from db call- need to update to remove from array and from recipes object
-  //   const mealPlansDoc = doc(db, 'mealplans', mealPlan.id)
-  //   const newMealPlan = { ...mealPlan }
-  //   const columnToDeleteFrom = mealPlan.columns[day]
-  //   const recipeIds = [...columnToDeleteFrom.recipe_ids]
-  //   recipeIds.splice(index, 1)
-  //   newMealPlan.columns[day].recipe_ids = recipeIds
-  // }
+  const handleRemove = async (index, day, recipeId) => {
+    const mealPlansDoc = doc(db, 'mealplans', mealPlan.id)
+    const newMealPlan = { ...mealPlan }
+    const columnToDeleteFrom = mealPlan.columns[day]
+    const recipeIds = [...columnToDeleteFrom.recipe_ids]
+    recipeIds.splice(index, 1)
+    newMealPlan.columns[day].recipe_ids = recipeIds
+    delete newMealPlan.recipes[recipeId]
+    setMealPlan(newMealPlan)
+    await updateDoc(mealPlansDoc, newMealPlan)
+  }
 
   useEffect(() => {
     getMealPlan()
@@ -81,6 +74,7 @@ export default function MealPlanPage() {
       await updateDoc(mealPlansDoc, newMealPlan)
     }
   }
+
   return (
     <div className="DND">
       <DragDropContext
@@ -128,14 +122,18 @@ export default function MealPlanPage() {
                                     }}
                                   >
                                     {recipe.name}
-                                    {/* <button
+                                    <button
                                       onClick={() =>
-                                        removeRecipe(index, column.name)
+                                        handleRemove(
+                                          index,
+                                          column.day,
+                                          recipe.edamam_id,
+                                        )
                                       }
-                                      className="hide-btn"
+                                      // className="hide-btn"
                                     >
                                       X
-                                    </button> */}
+                                    </button>
                                   </div>
                                 )
                               }}
