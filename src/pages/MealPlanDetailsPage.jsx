@@ -42,15 +42,15 @@ var columnsFromBackend = {
   Saturday: {},
   Sunday: {},
 }
-const columnOrder = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
-]
+// const columnOrder = [
+//   'Monday',
+//   'Tuesday',
+//   'Wednesday',
+//   'Thursday',
+//   'Friday',
+//   'Saturday',
+//   'Sunday',
+// ]
 export default function MealPlanPage() {
   const mealPlansRef = collection(db, 'mealplans')
   const { id } = useParams()
@@ -75,12 +75,19 @@ export default function MealPlanPage() {
           columnsFromBackend[key] = { name: key, items: recipes }
         }
       })
-
       setColumns(columnsFromBackend)
     } catch (err) {
       console.log(err)
     }
   }
+
+  // const removeRecipe = (index, day) => {
+  //   const newColumns = {
+  //     ...columns,
+  //     [columns[day]]: columns[day].items.filter((_, i) => i !== index),
+  //   }
+  //   setColumns(newColumns)
+  // }
 
   useEffect(() => {
     getMealPlan()
@@ -131,6 +138,14 @@ export default function MealPlanPage() {
                                     }}
                                   >
                                     {item.content}
+                                    {/* <button
+                                      onClick={() =>
+                                        removeRecipe(index, column.name)
+                                      }
+                                      className="hide-btn"
+                                    >
+                                      X
+                                    </button> */}
                                   </div>
                                 )
                               }}
