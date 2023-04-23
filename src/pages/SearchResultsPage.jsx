@@ -14,41 +14,30 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
-export default function SearchResultsPage({ search }) {
+export default function SearchResultsPage() {
   const [results, setResults] = useState([])
   const [recipeAdded, setRecipeAdded] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [resultsPerPage] = useState(10)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [diplayResults, setDisplayResults] = useState(true)
   const [selectedIndex, setSelectedIndex] = useState(null)
   const [show, setShow] = useState(false)
   const [mealPlans, setMealPlans] = useState(null)
   const [newMealPlan, setNewMealPlan] = useState(null)
-  const { keyword } = useParams()
+  const { queryString } = useParams()
+
   useEffect(() => {
-    let url = `https://api.edamam.com/search?q=${keyword}&app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_API_KEY}&from=0&to=100`
-
-    if (search.health) {
-      url = url + `&health=${search.health}`
-    }
-
-    if (search.cuisineType) {
-      url = url + `&cuisineType=${search.cuisineType}`
-    }
-
-    if (search.mealType) {
-      url = url + `&mealType=${search.mealType}`
-    }
-
     setLoading(true)
-    fetch(url)
+    fetch(
+      `https://api.edamam.com/search?app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_API_KEY}&${queryString}&from=0&to=100`,
+    )
       .then((res) => res.json())
       .then((res) => {
         setResults(res.hits)
         setLoading(false)
       })
-  }, [keyword])
+  }, [queryString])
 
   const recipeCollectionsRef = collection(db, 'recipes')
 
@@ -230,13 +219,13 @@ export default function SearchResultsPage({ search }) {
               )
             })}
           </ul>
+          <Pagination
+            resultsPerPage={resultsPerPage}
+            totalResults={results.length}
+            paginate={paginate}
+          />
         </>
       )}
-      <Pagination
-        resultsPerPage={resultsPerPage}
-        totalResults={results.length}
-        paginate={paginate}
-      />
     </section>
   )
 }
