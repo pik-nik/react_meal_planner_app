@@ -169,7 +169,7 @@ export default function MyRecipesPage() {
     <section>
       <h1>My recipes</h1>
       <div>
-        {recipeList.map((recipe) => {
+        {currentResults.map((recipe) => {
           return (
             <div key={recipe.id}>
               <h1>{recipe.name}</h1>
