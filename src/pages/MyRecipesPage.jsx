@@ -85,12 +85,6 @@ export default function MyRecipesPage() {
     setAddedToDb('')
   }
 
-  const handleShowAdd = (recipe) => {
-    setShowAdd(true)
-    setSelectedRecipe(recipe)
-    setAddedToDb('')
-  }
-
   const handleHideAdd = () => {
     setShowAdd(false)
     setSelectedPlanner('default')
@@ -188,12 +182,8 @@ export default function MyRecipesPage() {
                 Delete Recipe
               </button>
               <button onClick={() => handleShowAdd(recipe)}>
-              <button onClick={() => handleShowAdd(recipe)}>
                 Add to a meal plan
               </button>
-              {addedToDb && recipe === selectedRecipe ? (
-                <span>{addedToDb}</span>
-              ) : null}
               {addedToDb && recipe === selectedRecipe ? (
                 <span>{addedToDb}</span>
               ) : null}
@@ -204,7 +194,7 @@ export default function MyRecipesPage() {
       <Modal show={showAdd} onHide={handleHideAdd} backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title>
-            Which meal planner do you want to add <i>{selectedRecipe.name}</i>{' '}
+            Which meal planner do you want to add <i>{selectedRecipe.name}</i>
             to?
           </Modal.Title>
         </Modal.Header>
