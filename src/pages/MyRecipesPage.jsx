@@ -15,6 +15,7 @@ import {
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { Form } from 'react-bootstrap'
+import '../css/MyRecipesPage.css'
 import { v4 as uuid } from 'uuid'
 import Pagination from '../components/Pagination'
 export default function MyRecipesPage({ user, loading }) {
@@ -50,6 +51,7 @@ export default function MyRecipesPage({ user, loading }) {
         id: doc.id,
       }))
       // Set the recipe list
+      console.log(filteredData)
       setRecipeList(filteredData)
     } catch (err) {
       console.log(err)
@@ -115,6 +117,7 @@ export default function MyRecipesPage({ user, loading }) {
         ...tempState.recipes,
         [selectedRecipe.edamam_id]: selectedRecipe,
       }
+      console.log(selectedRecipe)
       await updateDoc(mealPlansDoc, tempState)
       setAddedToDb(`Added to new meal plan: ${tempState.name}`)
       setSelectedPlanner('default')
@@ -167,7 +170,7 @@ export default function MyRecipesPage({ user, loading }) {
   }
 
   return (
-    <section>
+    <section className="myrecipes-section">
       <h1>My recipes</h1>
       {loading ? (
         <p>Loading...</p>
