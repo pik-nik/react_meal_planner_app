@@ -11,5 +11,14 @@ We created a [wireframe](https://whimsical.com/seir63-meal-planner-app-NqDdWC24R
 
 <!-- Insert screenshot of wireframe here -->
 
-Used
-- Firebase/Firestore
+Tech Stack 
+- React
+- Bootstrap
+- Firebase/ Firestore
+- npm 
+
+Libraries Used 
+- React Router Dom 
+- React beautiful dnd 
+- UUID 
+
