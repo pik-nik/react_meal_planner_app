@@ -31,7 +31,7 @@ export default function HomePage() {
       <section className="search-bar-section">
         <h1 className="search-bar-title">Find a recipe</h1>
         <form onSubmit={handleSubmit}>
-          <section className="search-inputs">
+          <div>
             <input
               type="text"
               onChange={handleName}
@@ -39,40 +39,43 @@ export default function HomePage() {
               className="input-box"
               name="q"
             />
-            <section className="filter">
-              <label htmlFor="">Health</label>
-              <select id="" onChange={handleFilter} name="health">
-                <option value="">Select an Option...</option>
-                <option value="vegan">Vegan</option>
-                <option value="gluten-free">Gluten Free</option>
-                <option value="dairy-free">Milk free</option>
-                <option value="vegatarian">vegatarian</option>
-              </select>
-              <label htmlFor="">Cusisine type</label>
-              <select id="" onChange={handleFilter} name="cuisineType">
-                <option value="">Select an Option...</option>
-                <option value="Chinese">Chinese</option>
-                <option value="Italian">Italian</option>
-                <option value="Mexican">Mexican</option>
-                <option value="Asian">Asian</option>
-              </select>
-              <label htmlFor="">Meal Type</label>
-              <select id="" name="mealType" onChange={handleFilter}>
-                <option value="">Select an Option...</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Teatime">Tea time</option>
-              </select>
-            </section>
-          </section>
-          <button disabled={disabled}>Search</button>
-        </form>
-        <section className="categories">
-          <h3>categories</h3>
+          </div>
+          <section className="filter">
+            <label htmlFor="">Health</label>
+            <select id="" onChange={handleFilter} name="health">
+              <option value="">Select an Option...</option>
+              <option value="vegan">Vegan</option>
+              <option value="gluten-free">Gluten Free</option>
+              <option value="dairy-free">Milk free</option>
+              <option value="vegatarian">vegatarian</option>
+            </select>
+            <label htmlFor="">Cusisine</label>
+            <select id="" onChange={handleFilter} name="cuisineType">
+              <option value="">Select an Option...</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Italian">Italian</option>
+              <option value="Mexican">Mexican</option>
+              <option value="Asian">Asian</option>
+            </select>
+            <label htmlFor="">Meal</label>
+            <select id="" name="mealType" onChange={handleFilter}>
+              <option value="">Select an Option...</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Teatime">Tea time</option>
+            </select>
 
-          <div className="popular">
-            <h1>popular </h1>
+            <button className="btn-submit" disabled={disabled}>
+              Search
+            </button>
+          </section>
+        </form>
+      </section>
+      <section className="categories">
+        <div className="popular">
+          <h1>popular recipes</h1>
+          <div>
             <div value={'chicken'} className="chicken">
               <Link to="/search/q=chicken">chicken</Link>
             </div>
@@ -83,8 +86,8 @@ export default function HomePage() {
               <Link to="/search/q=fish">fish</Link>
             </div>
           </div>
-          <RandomMeal />
-        </section>
+        </div>
+        <RandomMeal />
       </section>
     </main>
   )

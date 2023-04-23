@@ -1,4 +1,5 @@
-.search-bar-section {
+.search-bar-section,
+.categories {
   width: 60%;
   margin: 60px auto;
   padding: 20px;
@@ -22,46 +23,77 @@
 }
 .search-bar-section form {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
   width: 80%;
   border-radius: 10px;
 }
+
 .input-box {
   width: 100%;
   border-radius: 10px;
   border: 1px solid black;
   color: #091e42;
-  margin-bottom: 1rem;
+  margin: 10px auto;
 }
-.search-bar-section .filter {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
+
 .search-bar-section form button {
   border-radius: 10px;
   margin-left: 15px;
   border: 1px solid black;
   background-color: #e6fcff;
   color: #091e42;
+  align-self: flex-end;
+  justify-self: end;
 }
 .filter {
-  width: 60%;
-  margin: 60px auto;
-  padding: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  border-radius: 10px;
-  background-color: #8993a4;
-  box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
-  border: 1px solid black;
+  gap: 10px;
+  margin: 10px 10px;
 }
 .filter * {
   border-radius: 10px;
+}
+.random {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+.random .container-random {
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.random div div {
+  width: 100%;
+}
+.random .container-random div img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.random .container-random div h2 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #091e42;
+}
+.popular h1 {
+  text-transform: uppercase;
+  font-family: 'Noto Serif', serif;
+  font-size: 2rem;
+  text-decoration: none;
+  color: #091e42;
+}
+.popular div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #091e42;
 }

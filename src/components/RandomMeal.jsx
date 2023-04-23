@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import '../css/HomePage.css'
 const options = [
   'chicken',
   'beef',
@@ -29,11 +29,11 @@ export default function RandomMeal() {
 
   return (
     <section className="random">
-      <h3>random Meals</h3>
+      <h3>Random Meals</h3>
       {randomMeals.length === 0 ? (
         <p>Loading...</p>
       ) : (
-        <>
+        <div className="container-random">
           {randomMeals.map((meal, index) => {
             const uri = meal.recipe.uri
             const id = uri.substring(uri.indexOf('_') + 1, uri.length)
@@ -46,7 +46,7 @@ export default function RandomMeal() {
               </div>
             )
           })}
-        </>
+        </div>
       )}
     </section>
   )

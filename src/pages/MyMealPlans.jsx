@@ -16,10 +16,9 @@ import {
   orderBy,
 } from 'firebase/firestore'
 import { v4 as uuid } from 'uuid'
+import '../css/MyMealPlans.css'
 
 export default function MyMealPlans({ user, loading }) {
-import '../css/MyMealPlans.css'
-export default function MyMealPlans() {
   const [mealPlans, setMealPlans] = useState([])
   const [showAddPlan, setShowAddPlan] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState('')
