@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { db } from '../index'
 import {
   addDoc,
@@ -25,10 +25,13 @@ export default function SearchResultsPage() {
   const [show, setShow] = useState(false)
   const [mealPlans, setMealPlans] = useState(null)
   const [newMealPlan, setNewMealPlan] = useState(null)
-  const { queryString } = useParams()
+  const [params] = useSearchParams()
 
   useEffect(() => {
     setLoading(true)
+    const queryString = [...params].reduce((query, [key, value]) => {
+      return query + `&${key}=${value}`
+    }, '')
     fetch(
       `https://api.edamam.com/search?app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_API_KEY}${queryString}&from=0&to=100`,
     )
@@ -37,11 +40,12 @@ export default function SearchResultsPage() {
         setResults(res.hits)
         setLoading(false)
       })
-  }, [queryString])
+  }, [params])
 
   const recipeCollectionsRef = collection(db, 'recipes')
 
   const handleClose = () => setShow(false)
+
   const handleAddRec = async (id, { recipe }, index) => {
     setShow(true)
     setSelectedIndex(index)

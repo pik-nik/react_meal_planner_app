@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import '../css/RecipeDetailsPage.css'
 
-export default function RecipeDetailsPage({ results }) {
+export default function RecipeDetailsPage() {
   const [recipe, setRecipe] = useState(null)
   const { id } = useParams()
   const [recipeAdded, setRecipeAdded] = useState(false)

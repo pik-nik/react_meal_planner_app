@@ -22,7 +22,7 @@ function App() {
       <NavBar user={user} loading={loading} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/search/:queryString" element={<SearchResultsPage />} />
+        <Route path="/search" element={<SearchResultsPage />} />
         <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
         <Route path="/my-recipes" element={<MyRecipesPage />} />
         <Route path="/login" element={<LoginPage />} />
