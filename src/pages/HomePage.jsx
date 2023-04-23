@@ -4,7 +4,7 @@ import '../css/HomePage.css'
 import { AiFillBoxPlot } from 'react-icons/ai'
 import RandomMeal from '../components/RandomMeal'
 import { Link } from 'react-router-dom'
-export default function HomePage({ setSearch }) {
+export default function HomePage() {
   const [searchInput, setSearchInput] = useState({})
   const navigate = useNavigate()
 
@@ -15,17 +15,20 @@ export default function HomePage({ setSearch }) {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    let queryString = ''
-    Object.entries(searchInput).forEach(
-      ([key, value]) => (queryString += `&${key}=${value}`),
-    )
+    const queryString =
+      '?' +
+      Object.entries(searchInput)
+        .map(([key, value]) => `${key}=${value}`)
+        .join('&')
 
-    navigate(`/search/${queryString}`)
+    navigate(`/search${queryString}`)
   }
 
   const handleOption = ({ target }) => {
     setSearchInput({ ...searchInput, [target.name]: target.value })
   }
+
+  const disabled = !Object.keys(searchInput).some((key) => searchInput[key])
 
   return (
     <main>
@@ -39,7 +42,7 @@ export default function HomePage({ setSearch }) {
             className="input-box"
             name="q"
           />
-          <button>Search</button>
+          <button disabled={disabled}>Search</button>
         </form>
         <section className="filter">
           <label htmlFor="">Health</label>
@@ -73,13 +76,13 @@ export default function HomePage({ setSearch }) {
           <div className="popular">
             <h1>popular </h1>
             <div value={'chicken'} className="chicken">
-              <Link to="/search/:chicken">chicken</Link>
+              <Link to="/search/q=chicken">chicken</Link>
             </div>
             <div value={'pasta'} className="pasta">
-              <Link to="/search/:pasta">pasta</Link>
+              <Link to="/search/q=pasta">pasta</Link>
             </div>
             <div value={'fish'} className="fish">
-              <Link to="/search/:fish">fish</Link>
+              <Link to="/search/q=fish">fish</Link>
             </div>
           </div>
           <RandomMeal />
