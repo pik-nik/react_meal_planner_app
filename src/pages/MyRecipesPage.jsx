@@ -108,14 +108,20 @@ export default function MyRecipesPage({ user, loading }) {
     e.preventDefault()
     setShowAdd(false)
     if (selectedPlanner !== 'default') {
+      // for adding to existing db
+      const recipeId = uuid()
       const mealPlansDoc = doc(db, 'mealplans', selectedPlanner)
       const tempState = mealPlans.filter(
         (mealPlan) => mealPlan.id === selectedPlanner,
       )[0]
-      tempState.columns['Monday'].recipe_ids.push(selectedRecipe.edamam_id)
+      tempState.columns['Monday'].recipe_ids.push(recipeId)
       tempState.recipes = {
         ...tempState.recipes,
-        [selectedRecipe.edamam_id]: selectedRecipe,
+        [recipeId]: {
+          ...selectedRecipe,
+          db_id: selectedRecipe.id,
+          id: recipeId,
+        },
       }
       console.log(selectedRecipe)
       await updateDoc(mealPlansDoc, tempState)
@@ -123,6 +129,8 @@ export default function MyRecipesPage({ user, loading }) {
       setSelectedPlanner('default')
       setNewPlanner('')
     } else {
+      // for adding to new db
+      const recipeId = uuid()
       try {
         await addDoc(mealPlansRef, {
           name: newPlanner,
@@ -139,7 +147,7 @@ export default function MyRecipesPage({ user, loading }) {
             Monday: {
               id: uuid(),
               day: 'Monday',
-              recipe_ids: [selectedRecipe.edamam_id],
+              recipe_ids: [recipeId],
             },
             Tuesday: { id: uuid(), day: 'Tuesday', recipe_ids: [] },
             Wednesday: { id: uuid(), day: 'Wednesday', recipe_ids: [] },
@@ -149,9 +157,13 @@ export default function MyRecipesPage({ user, loading }) {
             Sunday: { id: uuid(), day: 'Sunday', recipe_ids: [] },
           },
           recipes: {
-            [selectedRecipe.edamam_id]: selectedRecipe,
+            [recipeId]: {
+              ...selectedRecipe,
+              db_id: selectedRecipe.id,
+              id: recipeId,
+            },
           },
-          user: 1, // use userid or username
+          // user: 1, // use userid or username
           created_at: serverTimestamp(),
         })
         getMealPlans()

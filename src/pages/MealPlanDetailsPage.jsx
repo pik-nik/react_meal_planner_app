@@ -103,7 +103,7 @@ export default function MealPlanPage() {
                         {recipes.map((recipe, index) => {
                           return (
                             <Draggable
-                              key={uuid()}
+                              key={recipe.id}
                               draggableId={recipe.id}
                               index={index}
                             >
