@@ -16,6 +16,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { Form } from 'react-bootstrap'
 import { v4 as uuid } from 'uuid'
+import Pagination from '../components/Pagination'
 export default function MyRecipesPage() {
   const [recipeList, setRecipeList] = useState([])
   const [mealPlans, setMealPlans] = useState(null)
@@ -27,6 +28,12 @@ export default function MyRecipesPage() {
   const recipeCollectionsRef = collection(db, 'recipes')
   const mealPlansRef = collection(db, 'mealplans')
   const [addedToDb, setAddedToDb] = useState('')
+  const resultsPerPage = 10
+  const [currentPage, setCurrentPage] = useState(1)
+  // get current displayed posts
+  const indexOfLastResult = currentPage * resultsPerPage
+  const indexOfFirstResult = indexOfLastResult - resultsPerPage
+  const currentResults = recipeList.slice(indexOfFirstResult, indexOfLastResult)
 
   const getRecipeList = async () => {
     const q = query(
@@ -153,6 +160,11 @@ export default function MyRecipesPage() {
     }
   }
 
+  const paginate = (pageNumber, e) => {
+    e.preventDefault()
+    setCurrentPage(pageNumber)
+  }
+
   return (
     <section>
       <h1>My recipes</h1>
@@ -216,6 +228,11 @@ export default function MyRecipesPage() {
           </Button>
         </Modal.Footer>
       </Modal>
+      <Pagination
+        resultsPerPage={resultsPerPage}
+        totalResults={recipeList.length}
+        paginate={paginate}
+      ></Pagination>
     </section>
   )
 }
