@@ -9,14 +9,25 @@ import {
   where,
   orderBy,
   updateDoc,
+  addDoc,
+  serverTimestamp,
 } from 'firebase/firestore'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { Form } from 'react-bootstrap'
+import { v4 as uuid } from 'uuid'
 export default function MyRecipesPage() {
+  const [recipeList, setRecipeList] = useState([])
+  const [mealPlans, setMealPlans] = useState(null)
+  const [showAdd, setShowAdd] = useState(false)
+  const [selectedPlanner, setSelectedPlanner] = useState('default')
+  const [newPlanner, setNewPlanner] = useState('')
+  const [selectedRecipe, setSelectedRecipe] = useState({})
+  // Read the data from db
+  const recipeCollectionsRef = collection(db, 'recipes')
+  const mealPlansRef = collection(db, 'mealplans')
+
   const getRecipeList = async () => {
-    // Read the data from db
-    const recipeCollectionsRef = collection(db, 'recipes')
     const q = query(
       recipeCollectionsRef,
       //if user anth is done, uncomment the next line
@@ -35,21 +46,7 @@ export default function MyRecipesPage() {
       console.log(err)
     }
   }
-  const [recipeList, setRecipeList] = useState([])
-  useEffect(() => {
-    getRecipeList()
-  }, [])
 
-  const deleteRecipe = async (id) => {
-    const recipeDoc = doc(db, 'recipes', id)
-    await deleteDoc(recipeDoc)
-    getRecipeList()
-  }
-  const [showAdd, setShowAdd] = useState(false)
-  const [selectedPlanner, setSelectedPlanner] = useState('')
-  const [mealPlans, setMealPlans] = useState(null)
-  const [selectedRecipe, setSelectedRecipe] = useState({})
-  const mealPlansRef = collection(db, 'mealplans')
   const getMealPlans = async () => {
     try {
       const data = await getDocs(mealPlansRef)
@@ -62,63 +59,91 @@ export default function MyRecipesPage() {
       console.log(err)
     }
   }
+
   useEffect(() => {
+    getRecipeList()
     getMealPlans()
   }, [])
 
-  console.log(mealPlans)
+  const deleteRecipe = async (id) => {
+    const recipeDoc = doc(db, 'recipes', id)
+    await deleteDoc(recipeDoc)
+    getRecipeList()
+  }
 
   const handleHideAdd = () => {
     setShowAdd(false)
-    setSelectedPlanner('')
+    setSelectedPlanner('default')
+    setNewPlanner('')
   }
 
-  const handleSubmitToExisting = async (e) => {
-    e.preventDefault()
-    const mealPlansDoc = doc(db, 'mealplans', selectedPlanner)
-    // console.log(mealPlans)
-    const tempState = mealPlans.filter(
-      (mealPlan) => mealPlan.id === selectedPlanner,
-    )[0]
-    tempState.columns['Monday'].recipe_ids.push(selectedRecipe.edamam_id)
-    tempState.recipes = {
-      ...tempState.recipes,
-      [selectedRecipe.edamam_id]: selectedRecipe,
-    }
-    console.log(tempState)
-    await updateDoc(mealPlansDoc, tempState)
+  const handleChangeExisting = (e) => {
+    setSelectedPlanner(e.target.value)
+    setNewPlanner('')
   }
-  // console.log(selectedPlanner)
-  //   e.preventDefault()
-  //   setShowAdd(false)
-  //   try {
-  //     await addDoc(mealPlansRef, {
-  //       name: selectedPlanner,
-  //       column_order: [
-  //         'Monday',
-  //         'Tuesday',
-  //         'Wednesday',
-  //         'Thursday',
-  //         'Friday',
-  //         'Saturday',
-  //         'Sunday',
-  //       ],
-  //       columns: {
-  //         Monday: { id: uuid(), day: 'Monday', recipe_ids: [] },
-  //         Tuesday: { id: uuid(), day: 'Tuesday', recipe_ids: [] },
-  //         Wednesday: { id: uuid(), day: 'Wednesday', recipe_ids: [] },
-  //         Thursday: { id: uuid(), day: 'Thursday', recipe_ids: [] },
-  //         Friday: { id: uuid(), day: 'Friday', recipe_ids: [] },
-  //         Saturday: { id: uuid(), day: 'Saturday', recipe_ids: [] },
-  //         Sunday: { id: uuid(), day: 'Sunday', recipe_ids: [] },
-  //       },
-  //       recipes: {}, // contains id: {id: ... name: ... } maybe whole thing from my recipes?
-  //       user: 1, // use userid or username
-  //     })
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
+
+  const handleChangeNew = (e) => {
+    setNewPlanner(e.target.value)
+    setSelectedPlanner('default')
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setShowAdd(false)
+    if (selectedPlanner !== 'default') {
+      const mealPlansDoc = doc(db, 'mealplans', selectedPlanner)
+      const tempState = mealPlans.filter(
+        (mealPlan) => mealPlan.id === selectedPlanner,
+      )[0]
+      tempState.columns['Monday'].recipe_ids.push(selectedRecipe.edamam_id)
+      tempState.recipes = {
+        ...tempState.recipes,
+        [selectedRecipe.edamam_id]: selectedRecipe,
+      }
+      // console.log(tempState)
+      await updateDoc(mealPlansDoc, tempState)
+      setSelectedPlanner('default')
+      setNewPlanner('')
+    } else {
+      try {
+        await addDoc(mealPlansRef, {
+          name: newPlanner,
+          column_order: [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday',
+          ],
+          columns: {
+            Monday: {
+              id: uuid(),
+              day: 'Monday',
+              recipe_ids: [selectedRecipe.edamam_id],
+            },
+            Tuesday: { id: uuid(), day: 'Tuesday', recipe_ids: [] },
+            Wednesday: { id: uuid(), day: 'Wednesday', recipe_ids: [] },
+            Thursday: { id: uuid(), day: 'Thursday', recipe_ids: [] },
+            Friday: { id: uuid(), day: 'Friday', recipe_ids: [] },
+            Saturday: { id: uuid(), day: 'Saturday', recipe_ids: [] },
+            Sunday: { id: uuid(), day: 'Sunday', recipe_ids: [] },
+          },
+          recipes: {
+            [selectedRecipe.edamam_id]: selectedRecipe,
+          },
+          user: 1, // use userid or username
+          created_at: serverTimestamp(),
+        })
+        getMealPlans()
+        setSelectedPlanner('default')
+        setNewPlanner('')
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
 
   return (
     <section>
@@ -156,30 +181,31 @@ export default function MyRecipesPage() {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
+              <Form.Text>Save into existing meal plan</Form.Text>
               <Form.Select
                 aria-label="Default select example"
-                onChange={(e) => setSelectedPlanner(e.target.value)}
+                onChange={handleChangeExisting}
+                value={selectedPlanner}
               >
-                <option>Save into a meal plan</option>
+                <option value="default">Pick meal plan</option>
                 {mealPlans?.map((mealPlan, index) => (
                   <option key={index} value={mealPlan.id}>
                     {mealPlan.name}
                   </option>
                 ))}
               </Form.Select>
+              <Form.Text>Save into new meal plan</Form.Text>
               <Form.Control
-                onChange={(e) => setSelectedPlanner(e.target.value)}
+                onChange={handleChangeNew}
                 type="text"
-                placeholder="Enter New Meal Planner name"
+                placeholder="Enter new meal plan name"
+                value={newPlanner}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={(e) => handleSubmitToExisting(e)}
-          >
+          <Button variant="secondary" onClick={(e) => handleSubmit(e)}>
             Submit
           </Button>
         </Modal.Footer>

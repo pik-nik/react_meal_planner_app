@@ -63,6 +63,7 @@ export default function MyMealPlans() {
         },
         recipes: {}, // contains id: {id: ... name: ... } maybe whole thing from my recipes?
         user: 1, // use userid or username
+        created_at: serverTimestamp(),
       })
       getMealPlans()
     } catch (err) {

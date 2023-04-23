@@ -114,13 +114,8 @@ export default function SearchResultsPage() {
           Sunday: { id: uuid(), day: 'Sunday', recipe_ids: [] },
         },
         recipes: {
-          [edamamId]: {
-            name: recipe.label,
-            edamam_id: edamamId,
-            image: recipe.image,
-            user_id: 1, // hardcoded user id for now
-          },
-        }, // contains id: {id: ... name: ... } maybe whole thing from my recipes?
+          [edamamId]: recipe,
+        },
         user: 1, // use userid or username
         created_at: serverTimestamp(),
       })
