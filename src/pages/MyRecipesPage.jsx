@@ -17,20 +17,21 @@ import Button from 'react-bootstrap/Button'
 import { Form } from 'react-bootstrap'
 import { v4 as uuid } from 'uuid'
 import Pagination from '../components/Pagination'
-export default function MyRecipesPage() {
+export default function MyRecipesPage({ user, loading }) {
   const [recipeList, setRecipeList] = useState([])
   const [mealPlans, setMealPlans] = useState(null)
   const [showAdd, setShowAdd] = useState(false)
   const [selectedPlanner, setSelectedPlanner] = useState('default')
   const [newPlanner, setNewPlanner] = useState('')
   const [selectedRecipe, setSelectedRecipe] = useState({})
+  const [addedToDb, setAddedToDb] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+
   // Read the data from db
   const recipeCollectionsRef = collection(db, 'recipes')
   const mealPlansRef = collection(db, 'mealplans')
-  const [addedToDb, setAddedToDb] = useState('')
-  const resultsPerPage = 10
-  const [currentPage, setCurrentPage] = useState(1)
   // get current displayed posts
+  const resultsPerPage = 10
   const indexOfLastResult = currentPage * resultsPerPage
   const indexOfFirstResult = indexOfLastResult - resultsPerPage
   const currentResults = recipeList.slice(indexOfFirstResult, indexOfLastResult)
@@ -39,7 +40,7 @@ export default function MyRecipesPage() {
     const q = query(
       recipeCollectionsRef,
       //if user anth is done, uncomment the next line
-      // where('user_id', '==', '1'),
+      where('user_id', '==', user.uid),
       orderBy('createdAt', 'desc'),
     )
     try {
@@ -71,7 +72,7 @@ export default function MyRecipesPage() {
   useEffect(() => {
     getRecipeList()
     getMealPlans()
-  }, [])
+  }, [loading])
 
   const deleteRecipe = async (id) => {
     const recipeDoc = doc(db, 'recipes', id)
@@ -168,27 +169,37 @@ export default function MyRecipesPage() {
   return (
     <section>
       <h1>My recipes</h1>
-      <div>
-        {currentResults.map((recipe) => {
-          return (
-            <div key={recipe.id}>
-              <h1>{recipe.name}</h1>
-              <img src={recipe.image} alt="" />
-              <p>{recipe.createdAt.toDate().toLocaleDateString()}</p>
-              <p>{recipe.createdAt.toDate().toLocaleTimeString()}</p>
-              <button onClick={() => deleteRecipe(recipe.id)}>
-                Delete Recipe
-              </button>
-              <button onClick={() => handleShowAdd(recipe)}>
-                Add to a meal plan
-              </button>
-              {addedToDb && recipe === selectedRecipe ? (
-                <span>{addedToDb}</span>
-              ) : null}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          {currentResults.length === 0 ? (
+            <p>No Saved Recipes.</p>
+          ) : (
+            <div>
+              {currentResults.map((recipe) => {
+                return (
+                  <div key={recipe.id}>
+                    <h1>{recipe.name}</h1>
+                    <img src={recipe.image} alt="" />
+                    <p>{recipe.createdAt.toDate().toLocaleDateString()}</p>
+                    <p>{recipe.createdAt.toDate().toLocaleTimeString()}</p>
+                    <button onClick={() => deleteRecipe(recipe.id)}>
+                      Delete Recipe
+                    </button>
+                    <button onClick={() => handleShowAdd(recipe)}>
+                      Add to a meal plan
+                    </button>
+                    {addedToDb && recipe === selectedRecipe ? (
+                      <span>{addedToDb}</span>
+                    ) : null}
+                  </div>
+                )
+              })}
             </div>
-          )
-        })}
-      </div>
+          )}
+        </>
+      )}
       <Modal show={showAdd} onHide={handleHideAdd} backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title>
