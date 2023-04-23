@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import { db } from '../index'
 import {
   addDoc,
@@ -14,21 +14,22 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
-export default function SearchResultsPage() {
+export default function SearchResultsPage({ user, loading }) {
   const [results, setResults] = useState([])
   const [recipeAdded, setRecipeAdded] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [resultsPerPage] = useState(10)
-  const [loading, setLoading] = useState(true)
+  const [loadingResults, setLoadingResults] = useState(true)
   const [diplayResults, setDisplayResults] = useState(true)
   const [selectedIndex, setSelectedIndex] = useState(null)
   const [show, setShow] = useState(false)
   const [mealPlans, setMealPlans] = useState(null)
   const [newMealPlan, setNewMealPlan] = useState(null)
   const [params] = useSearchParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    setLoading(true)
+    setLoadingResults(true)
     const queryString = [...params].reduce((query, [key, value]) => {
       return query + `&${key}=${value}`
     }, '')
@@ -38,7 +39,7 @@ export default function SearchResultsPage() {
       .then((res) => res.json())
       .then((res) => {
         setResults(res.hits)
-        setLoading(false)
+        setLoadingResults(false)
       })
   }, [params])
 
@@ -47,6 +48,7 @@ export default function SearchResultsPage() {
   const handleClose = () => setShow(false)
 
   const handleAddRec = async (id, { recipe }, index) => {
+    if (!user) navigate('/login')
     setShow(true)
     setSelectedIndex(index)
     try {
@@ -54,7 +56,7 @@ export default function SearchResultsPage() {
         name: recipe.label,
         edamam_id: id,
         image: recipe.image,
-        user_id: 1, // hardcoded user id for now
+        user_id: user.uid, // hardcoded user id for now
         createdAt: serverTimestamp(),
       })
     } catch (err) {
@@ -140,7 +142,7 @@ export default function SearchResultsPage() {
           </button>
         </div>
       </header>
-      {loading ? (
+      {loadingResults ? (
         <h3>Loading...</h3>
       ) : (
         <>
@@ -172,7 +174,6 @@ export default function SearchResultsPage() {
                             ) : null}
                           </footer>
                         </Link>
-                        {/* {console.log(result.recipe.dietLabels)} */}
                         <div>
                           <Button
                             variant="primary"

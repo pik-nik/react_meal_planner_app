@@ -22,17 +22,29 @@ function App() {
       <NavBar user={user} loading={loading} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/search" element={<SearchResultsPage />} />
+        <Route
+          path="/search"
+          element={<SearchResultsPage user={user} loading={loading} />}
+        />
         <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
-        <Route path="/my-recipes" element={<MyRecipesPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
         <Route
           path="/user/:uid"
           element={<UserPage user={user} loading={loading} />}
         />
-        <Route path="/my-meal-plans" element={<MyMealPlans />} />
-        <Route path="/my-meal-plans/:id" element={<MealPlanDetailsPage />} />
+        <Route
+          path="/my-recipes"
+          element={<MyRecipesPage user={user} loading={loading} />}
+        />
+        <Route
+          path="/my-meal-plans"
+          element={<MyMealPlans user={user} loading={loading} />}
+        />
+        <Route
+          path="/my-meal-plans/:id"
+          element={<MealPlanDetailsPage user={user} loading={loading} />}
+        />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </div>
   )
