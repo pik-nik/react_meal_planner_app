@@ -116,7 +116,6 @@ export default function MyRecipesPage() {
       }
       await updateDoc(mealPlansDoc, tempState)
       setAddedToDb(`Added to new meal plan: ${tempState.name}`)
-      setAddedToDb(`Added to new meal plan: ${tempState.name}`)
       setSelectedPlanner('default')
       setNewPlanner('')
     } else {
@@ -154,7 +153,6 @@ export default function MyRecipesPage() {
         getMealPlans()
         setSelectedPlanner('default')
         setNewPlanner('')
-        setAddedToDb(`Added to new meal plan: ${newPlanner}`)
         setAddedToDb(`Added to new meal plan: ${newPlanner}`)
       } catch (err) {
         console.log(err)
