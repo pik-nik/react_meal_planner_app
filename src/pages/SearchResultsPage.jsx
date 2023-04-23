@@ -45,6 +45,7 @@ export default function SearchResultsPage() {
   const recipeCollectionsRef = collection(db, 'recipes')
 
   const handleClose = () => setShow(false)
+
   const handleAddRec = async (id, { recipe }, index) => {
     setShow(true)
     setSelectedIndex(index)

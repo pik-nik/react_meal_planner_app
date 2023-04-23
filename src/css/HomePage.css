@@ -23,14 +23,21 @@
 .search-bar-section form {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   width: 80%;
   border-radius: 10px;
 }
 .input-box {
-  width: 80%;
+  width: 100%;
   border-radius: 10px;
   border: 1px solid black;
   color: #091e42;
+  margin-bottom: 1rem;
+}
+.search-bar-section .filter {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 .search-bar-section form button {
   border-radius: 10px;
