@@ -17,8 +17,9 @@ export default function LoginPage() {
   const handleSubmit = (event) => {
     event.preventDefault()
     signInWithEmailAndPassword(auth, loginInfo.email, loginInfo.password)
-      .then(() => {
-        navigate('/')
+      .then((res) => {
+        const uid = res.user.uid
+        navigate(`/user/${uid}`)
       })
       .catch((error) => {
         setError(error.message)

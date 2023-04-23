@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../css/HomePage.css'
 export default function HomePage() {
-  const [searchInput, setSearchInput] = useState([])
+  const [searchInput, setSearchInput] = useState('')
   const navigate = useNavigate()
 
   const handleChange = ({ target }) => {

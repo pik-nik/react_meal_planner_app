@@ -7,13 +7,13 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import '../css/NavBar.css'
 
-export default function NavBar({ user, onLoad }) {
+export default function NavBar({ user, loading }) {
   const navigate = useNavigate()
 
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        navigate('/')
+        navigate('/login')
       })
       .catch((error) => console.log(error))
   }
@@ -30,7 +30,7 @@ export default function NavBar({ user, onLoad }) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <NavDropdown title="Menu" id="basic-nav-dropdown">
-                {onLoad ? (
+                {loading ? (
                   <NavDropdown.Item>
                     <p>Loading...</p>
                   </NavDropdown.Item>
