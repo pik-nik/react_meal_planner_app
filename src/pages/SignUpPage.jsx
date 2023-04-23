@@ -17,22 +17,22 @@ export default function SignUpPage() {
     event.preventDefault()
     const defaultPath = ref(storage, 'defaultUser.jpg')
     const defaultURL = await getDownloadURL(defaultPath)
-    createUserWithEmailAndPassword(auth, loginInfo.email, loginInfo.password)
-      .then((res) => {
-        updateProfile(res.user, {
-          displayName: loginInfo.email
-            .substring(0, loginInfo.email.indexOf('@'))
-            .replace('.', ''),
-          photoURL: defaultURL,
-        })
-        return res.user.uid
+    try {
+      const newUser = await createUserWithEmailAndPassword(
+        auth,
+        loginInfo.email,
+        loginInfo.password,
+      )
+      await updateProfile(newUser.user, {
+        displayName: loginInfo.email
+          .substring(0, loginInfo.email.indexOf('@'))
+          .replace('.', ''),
+        photoURL: defaultURL,
       })
-      .then((uid) => {
-        navigate(`/user/${uid}`)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+      navigate(`/user/${newUser.user.uid}`)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

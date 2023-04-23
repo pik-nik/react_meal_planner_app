@@ -4,21 +4,20 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { updateProfile } from 'firebase/auth'
 import { storage } from '..'
 
-export default function UserPage({ user, onLoad }) {
+export default function UserPage({ user, loading }) {
   const [isEditing, setIsEditing] = useState(false)
-  const [file, setFile] = useState('')
-  const [username, setUsername] = useState(null)
+  const [file, setFile] = useState(null)
+  const [username, setUsername] = useState('')
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    setUsername(user?.displayName)
-  }, [onLoad])
+    if (user) setUsername(user.displayName)
+  }, [user])
 
   const handleEdit = () => {
     setIsEditing(!isEditing)
   }
-
   const handleUsername = ({ target }) => {
     setUsername(target.value)
   }
@@ -33,15 +32,20 @@ export default function UserPage({ user, onLoad }) {
       const newImage = await uploadBytes(storageRef, file)
       imagePath = await getDownloadURL(newImage.ref)
     }
-    updateProfile(user, {
-      displayName: username,
-      photoURL: imagePath,
-    }).then(navigate(0))
+    try {
+      await updateProfile(user, {
+        displayName: username,
+        photoURL: imagePath,
+      })
+      navigate(0)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
     <section>
-      {onLoad ? (
+      {loading ? (
         <p>Loading...</p>
       ) : (
         <>

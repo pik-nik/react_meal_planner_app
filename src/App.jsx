@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '.'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
@@ -16,21 +15,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import MyMealPlans from './pages/MyMealPlans'
 
 function App() {
-  const [user, setUser] = useState(null)
-  const [isLoadingUser, setIsLoadingUser] = useState(true)
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setIsLoadingUser(true)
-      if (user) setUser(user)
-      else setUser(null)
-      setIsLoadingUser(false)
-    })
-  }, [])
-
+  const [user, loading, error] = useAuthState(auth)
   return (
     <div className="App">
-      <NavBar user={user} onLoad={isLoadingUser} />
+      <NavBar user={user} loading={loading} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search/:keyword" element={<SearchResultsPage />} />
@@ -40,7 +28,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route
           path="/user/:uid"
-          element={<UserPage user={user} onLoad={isLoadingUser} />}
+          element={<UserPage user={user} loading={loading} />}
         />
         <Route path="/my-meal-plans" element={<MyMealPlans />} />
         <Route path="/my-meal-plans/:id" element={<MealPlanDetailsPage />} />
