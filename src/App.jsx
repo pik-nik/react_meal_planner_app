@@ -13,15 +13,20 @@ import NavBar from './components/NavBar'
 import './css/App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import MyMealPlans from './pages/MyMealPlans'
+import { useState } from 'react'
 
 function App() {
+  const [search, setSearch] = useState({})
   const [user, loading, error] = useAuthState(auth)
   return (
     <div className="App">
       <NavBar user={user} loading={loading} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/search/:keyword" element={<SearchResultsPage />} />
+        <Route path="/" element={<HomePage setSearch={setSearch} />} />
+        <Route
+          path="/search/:keyword"
+          element={<SearchResultsPage search={search} />}
+        />
         <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
         <Route path="/my-recipes" element={<MyRecipesPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -38,3 +43,8 @@ function App() {
 }
 
 export default App
+
+/*
+searchInput={searchInput}searchInput={searchInput}
+              setSearchInput={setSearchInput}
+*/
