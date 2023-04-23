@@ -85,6 +85,12 @@ export default function MyRecipesPage() {
     setAddedToDb('')
   }
 
+  const handleShowAdd = (recipe) => {
+    setShowAdd(true)
+    setSelectedRecipe(recipe)
+    setAddedToDb('')
+  }
+
   const handleHideAdd = () => {
     setShowAdd(false)
     setSelectedPlanner('default')
@@ -115,6 +121,7 @@ export default function MyRecipesPage() {
         [selectedRecipe.edamam_id]: selectedRecipe,
       }
       await updateDoc(mealPlansDoc, tempState)
+      setAddedToDb(`Added to new meal plan: ${tempState.name}`)
       setAddedToDb(`Added to new meal plan: ${tempState.name}`)
       setSelectedPlanner('default')
       setNewPlanner('')
@@ -154,6 +161,7 @@ export default function MyRecipesPage() {
         setSelectedPlanner('default')
         setNewPlanner('')
         setAddedToDb(`Added to new meal plan: ${newPlanner}`)
+        setAddedToDb(`Added to new meal plan: ${newPlanner}`)
       } catch (err) {
         console.log(err)
       }
@@ -180,8 +188,12 @@ export default function MyRecipesPage() {
                 Delete Recipe
               </button>
               <button onClick={() => handleShowAdd(recipe)}>
+              <button onClick={() => handleShowAdd(recipe)}>
                 Add to a meal plan
               </button>
+              {addedToDb && recipe === selectedRecipe ? (
+                <span>{addedToDb}</span>
+              ) : null}
               {addedToDb && recipe === selectedRecipe ? (
                 <span>{addedToDb}</span>
               ) : null}
