@@ -88,7 +88,7 @@ export default function MyRecipesPage() {
     console.log(tempState)
     await updateDoc(mealPlansDoc, tempState)
   }
-  console.log(selectedPlanner)
+  // console.log(selectedPlanner)
   //   e.preventDefault()
   //   setShowAdd(false)
   //   try {
