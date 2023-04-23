@@ -16,6 +16,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { Form } from 'react-bootstrap'
 import { v4 as uuid } from 'uuid'
+import Pagination from '../components/Pagination'
 export default function MyRecipesPage() {
   const [recipeList, setRecipeList] = useState([])
   const [mealPlans, setMealPlans] = useState(null)
@@ -26,6 +27,13 @@ export default function MyRecipesPage() {
   // Read the data from db
   const recipeCollectionsRef = collection(db, 'recipes')
   const mealPlansRef = collection(db, 'mealplans')
+  const [addedToDb, setAddedToDb] = useState('')
+  const resultsPerPage = 10
+  const [currentPage, setCurrentPage] = useState(1)
+  // get current displayed posts
+  const indexOfLastResult = currentPage * resultsPerPage
+  const indexOfFirstResult = indexOfLastResult - resultsPerPage
+  const currentResults = recipeList.slice(indexOfFirstResult, indexOfLastResult)
 
   const getRecipeList = async () => {
     const q = query(
@@ -71,6 +79,12 @@ export default function MyRecipesPage() {
     getRecipeList()
   }
 
+  const handleShowAdd = (recipe) => {
+    setShowAdd(true)
+    setSelectedRecipe(recipe)
+    setAddedToDb('')
+  }
+
   const handleHideAdd = () => {
     setShowAdd(false)
     setSelectedPlanner('default')
@@ -100,8 +114,8 @@ export default function MyRecipesPage() {
         ...tempState.recipes,
         [selectedRecipe.edamam_id]: selectedRecipe,
       }
-      // console.log(tempState)
       await updateDoc(mealPlansDoc, tempState)
+      setAddedToDb(`Added to new meal plan: ${tempState.name}`)
       setSelectedPlanner('default')
       setNewPlanner('')
     } else {
@@ -139,17 +153,23 @@ export default function MyRecipesPage() {
         getMealPlans()
         setSelectedPlanner('default')
         setNewPlanner('')
+        setAddedToDb(`Added to new meal plan: ${newPlanner}`)
       } catch (err) {
         console.log(err)
       }
     }
   }
 
+  const paginate = (pageNumber, e) => {
+    e.preventDefault()
+    setCurrentPage(pageNumber)
+  }
+
   return (
     <section>
       <h1>My recipes</h1>
       <div>
-        {recipeList.map((recipe) => {
+        {currentResults.map((recipe) => {
           return (
             <div key={recipe.id}>
               <h1>{recipe.name}</h1>
@@ -159,14 +179,12 @@ export default function MyRecipesPage() {
               <button onClick={() => deleteRecipe(recipe.id)}>
                 Delete Recipe
               </button>
-              <button
-                onClick={() => {
-                  setShowAdd(true)
-                  setSelectedRecipe(recipe)
-                }}
-              >
+              <button onClick={() => handleShowAdd(recipe)}>
                 Add to a meal plan
               </button>
+              {addedToDb && recipe === selectedRecipe ? (
+                <span>{addedToDb}</span>
+              ) : null}
             </div>
           )
         })}
@@ -174,7 +192,7 @@ export default function MyRecipesPage() {
       <Modal show={showAdd} onHide={handleHideAdd} backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title>
-            Which meal planner do you want to add <i>{selectedRecipe.name}</i>{' '}
+            Which meal planner do you want to add <i>{selectedRecipe.name}</i>
             to?
           </Modal.Title>
         </Modal.Header>
@@ -210,6 +228,11 @@ export default function MyRecipesPage() {
           </Button>
         </Modal.Footer>
       </Modal>
+      <Pagination
+        resultsPerPage={resultsPerPage}
+        totalResults={recipeList.length}
+        paginate={paginate}
+      ></Pagination>
     </section>
   )
 }
