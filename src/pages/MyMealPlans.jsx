@@ -18,6 +18,8 @@ import {
 import { v4 as uuid } from 'uuid'
 
 export default function MyMealPlans({ user, loading }) {
+import '../css/MyMealPlans.css'
+export default function MyMealPlans() {
   const [mealPlans, setMealPlans] = useState([])
   const [showAddPlan, setShowAddPlan] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState('')
@@ -107,8 +109,73 @@ export default function MyMealPlans({ user, loading }) {
   }
 
   return (
-    <section>
+    <section className="myplans-sections">
       <h1>Your Meal Plans</h1>
+      <Row xs={1} md={4} className="ui-cards-section">
+        {mealPlans?.map((mealPlan) => (
+          <Col key={mealPlan.id} className="ui-card">
+            <div>
+              <Card className="mealplans">
+                <Card.Body>
+                  <Link to={`/my-meal-plans/${mealPlan.id}`}>
+                    <Card.Title>{mealPlan.name}</Card.Title>
+                    <Card.Text>Add text here?</Card.Text>
+                  </Link>
+                  {/* <Button> Go to meal plan</Button> */}
+                  <Button
+                    className="delete-btn"
+                    onClick={() =>
+                      handleDeletePrompt(mealPlan.name, mealPlan.id)
+                    }
+                  >
+                    Delete
+                  </Button>
+                </Card.Body>
+              </Card>
+            </div>
+          </Col>
+        ))}
+      </Row>
+      <div>
+        <Button onClick={handleShowAddPlan}>Add Meal Plan</Button>
+      </div>
+      <Modal show={showAddPlan} onHide={handleHideAddPlan} backdrop="static">
+        <Modal.Header closeButton>
+          <Modal.Title>What do you want to name your mealplan?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Control
+                onChange={(e) => setSelectedPlan(e.target.value)}
+                type="text"
+                placeholder="Enter Meal Planner name"
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showDelete} onHide={() => setShowDelete(false)}>
+        <Modal.Header>
+          <Modal.Title>
+            Are you sure you want to delete this meal plan?
+          </Modal.Title>
+        </Modal.Header>
+        <div>
+          <Modal.Body>
+            <h4>{selectedPlan}</h4>
+          </Modal.Body>
+        </div>
+        <Modal.Footer>
+          <Button onClick={(e) => handleDelete(e)}>Yes</Button>
+          <Button onClick={() => setShowDelete(false)}>No</Button>
+        </Modal.Footer>
+      </Modal>
       {loading ? (
         <p>Loading...</p>
       ) : (

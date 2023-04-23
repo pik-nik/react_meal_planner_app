@@ -1,0 +1,45 @@
+.myplans-sections {
+  margin: 30px auto;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.ui-cards-section {
+  margin: 20px 0;
+  gap: 20px;
+}
+.ui-card {
+  background-color: #8993a4;
+  box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.mealplans {
+  background-color: #8993a4;
+  border: #8993a4;
+}
+.mealplans * {
+  color: #e6fcff;
+  text-decoration: none;
+}
+.card-body {
+  width: 240px;
+  height: 160px;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.card-title {
+  text-transform: uppercase;
+}
+.btn-primary {
+  align-self: flex-end;
+  background-color: #eae6ff;
+  color: black;
+  border: 1px solid black;
+}
