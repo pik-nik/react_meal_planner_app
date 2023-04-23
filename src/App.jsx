@@ -20,8 +20,19 @@ function App() {
     <div className="App">
       <NavBar user={user} loading={loading} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/search/:keyword" element={<SearchResultsPage />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+            />
+          }
+        />
+        <Route
+          path="/search/:keyword"
+          element={<SearchResultsPage searchInput={searchInput} />}
+        />
         <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
         <Route path="/my-recipes" element={<MyRecipesPage />} />
         <Route path="/login" element={<LoginPage />} />
