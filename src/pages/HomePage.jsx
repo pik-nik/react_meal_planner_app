@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../css/HomePage.css'
 import { AiFillBoxPlot } from 'react-icons/ai'
-export default function HomePage() {
-  const [searchInput, setSearchInput] = useState('')
+export default function HomePage({ setSearch }) {
+  const [searchInput, setSearchInput] = useState({})
   const navigate = useNavigate()
 
   const handleChange = ({ target }) => {
@@ -12,6 +12,7 @@ export default function HomePage() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
+    setSearch(searchInput)
     navigate(`/search/${searchInput.q}`)
   }
 

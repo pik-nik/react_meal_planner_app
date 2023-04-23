@@ -14,7 +14,7 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
-export default function SearchResultsPage({ searchInput }) {
+export default function SearchResultsPage({ search }) {
   const [results, setResults] = useState([])
   const [recipeAdded, setRecipeAdded] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
@@ -29,16 +29,16 @@ export default function SearchResultsPage({ searchInput }) {
   useEffect(() => {
     let url = `https://api.edamam.com/search?q=${keyword}&app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_API_KEY}&from=0&to=100`
 
-    if (searchInput.health) {
-      url = url + `&health=${searchInput.health}`
+    if (search.health) {
+      url = url + `&health=${search.health}`
     }
 
-    if (searchInput.cuisineType) {
-      url = url + `&cuisineType=${searchInput.cuisineType}`
+    if (search.cuisineType) {
+      url = url + `&cuisineType=${search.cuisineType}`
     }
 
-    if (searchInput.mealType) {
-      url = url + `&mealType=${searchInput.mealType}`
+    if (search.mealType) {
+      url = url + `&mealType=${search.mealType}`
     }
 
     setLoading(true)
