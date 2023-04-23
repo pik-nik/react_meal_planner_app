@@ -30,7 +30,7 @@ export default function SearchResultsPage() {
   useEffect(() => {
     setLoading(true)
     fetch(
-      `https://api.edamam.com/search?app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_API_KEY}&${queryString}&from=0&to=100`,
+      `https://api.edamam.com/search?app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_API_KEY}${queryString}&from=0&to=100`,
     )
       .then((res) => res.json())
       .then((res) => {
@@ -140,90 +140,100 @@ export default function SearchResultsPage() {
         <h3>Loading...</h3>
       ) : (
         <>
-          <ul className={diplayResults ? 'display-list' : 'display-title'}>
-            {currentResults.map((result, index) => {
-              const uri = result.recipe.uri
-              const id = uri.substring(uri.indexOf('_') + 1, uri.length)
-              return (
-                <>
-                  <li key={index}>
-                    <Link to={`/recipes/${id}`}>
-                      <div>
-                        <img src={result.recipe.image} alt="" />
-                      </div>
-                      <footer>
-                        <h2>{result.recipe.label}</h2>
-                        <span>{result.recipe.dietLabels.join(' ')}</span>
-                        <span>
-                          {result.recipe.healthLabels.splice(0, 3).join(', ')}
-                        </span>
-                        {result.recipe.totalTime > 0 ? (
-                          <span>Made in {result.recipe.totalTime} mins</span>
-                        ) : null}
-                      </footer>
-                    </Link>
-                    {/* {console.log(result.recipe.dietLabels)} */}
-                    <div>
-                      <Button
-                        variant="primary"
-                        onClick={() => handleAddRec(id, result, index)}
-                        disabled={recipeAdded && selectedIndex === index}
-                        className="add-btn"
-                      >
-                        <AiOutlineHeart /> Add to My Recipes
-                      </Button>
-
-                      {recipeAdded && selectedIndex === index ? (
-                        <>
-                          <Link to="/my-recipes">
-                            {
-                              <span className="message-added">
-                                <AiFillHeart />
-                                ADDED Go to My Recipes
+          {results.length !== 0 ? (
+            <>
+              <ul className={diplayResults ? 'display-list' : 'display-title'}>
+                {currentResults.map((result, index) => {
+                  const uri = result.recipe.uri
+                  const id = uri.substring(uri.indexOf('_') + 1, uri.length)
+                  return (
+                    <>
+                      <li key={index}>
+                        <Link to={`/recipes/${id}`}>
+                          <div>
+                            <img src={result.recipe.image} alt="" />
+                          </div>
+                          <footer>
+                            <h2>{result.recipe.label}</h2>
+                            <span>{result.recipe.dietLabels.join(' ')}</span>
+                            <span>
+                              {result.recipe.healthLabels
+                                .splice(0, 3)
+                                .join(', ')}
+                            </span>
+                            {result.recipe.totalTime > 0 ? (
+                              <span>
+                                Made in {result.recipe.totalTime} mins
                               </span>
-                            }
-                          </Link>
-                        </>
-                      ) : null}
-                    </div>
-                  </li>
-                  <Modal show={show} onHide={handleClose} animation={false}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Save recipe</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>{result.recipe.label} recipe</Modal.Body>
-                    <Form.Select
-                      aria-label="Default select example"
-                      onChange={handleAddtoMealPlan}
-                    >
-                      <option>Save into your meal plan</option>
-                      {mealPlans.map((mealPlan, index) => (
-                        <option key={index} value={mealPlan.name}>
-                          {mealPlan.name}
-                        </option>
-                      ))}
-                    </Form.Select>
-                    <Form.Text>Or, you can make a new meal plan</Form.Text>
-                    <Form.Control
-                      type="text"
-                      placeholder="new plan name"
-                      onChange={(e) => handleAddNewMealPlan(e, id, result)} // on here, the Modal closes when we put one letter in as that is the first change, we might need to move this out and do an on submit?
-                    />
-                    <Modal.Footer>
-                      <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                </>
-              )
-            })}
-          </ul>
-          <Pagination
-            resultsPerPage={resultsPerPage}
-            totalResults={results.length}
-            paginate={paginate}
-          />
+                            ) : null}
+                          </footer>
+                        </Link>
+                        {/* {console.log(result.recipe.dietLabels)} */}
+                        <div>
+                          <Button
+                            variant="primary"
+                            onClick={() => handleAddRec(id, result, index)}
+                            disabled={recipeAdded && selectedIndex === index}
+                            className="add-btn"
+                          >
+                            <AiOutlineHeart /> Add to My Recipes
+                          </Button>
+
+                          {recipeAdded && selectedIndex === index ? (
+                            <>
+                              <Link to="/my-recipes">
+                                {
+                                  <span className="message-added">
+                                    <AiFillHeart />
+                                    ADDED Go to My Recipes
+                                  </span>
+                                }
+                              </Link>
+                            </>
+                          ) : null}
+                        </div>
+                      </li>
+                      <Modal show={show} onHide={handleClose} animation={false}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>Save recipe</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>{result.recipe.label} recipe</Modal.Body>
+                        <Form.Select
+                          aria-label="Default select example"
+                          onChange={handleAddtoMealPlan}
+                        >
+                          <option>Save into your meal plan</option>
+                          {mealPlans.map((mealPlan, index) => (
+                            <option key={index} value={mealPlan.name}>
+                              {mealPlan.name}
+                            </option>
+                          ))}
+                        </Form.Select>
+                        <Form.Text>Or, you can make a new meal plan</Form.Text>
+                        <Form.Control
+                          type="text"
+                          placeholder="new plan name"
+                          onChange={(e) => handleAddNewMealPlan(e, id, result)} // on here, the Modal closes when we put one letter in as that is the first change, we might need to move this out and do an on submit?
+                        />
+                        <Modal.Footer>
+                          <Button variant="primary" onClick={handleClose}>
+                            Save Changes
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+                    </>
+                  )
+                })}
+              </ul>
+              <Pagination
+                resultsPerPage={resultsPerPage}
+                totalResults={results.length}
+                paginate={paginate}
+              />
+            </>
+          ) : (
+            <p>no results</p>
+          )}
         </>
       )}
     </section>

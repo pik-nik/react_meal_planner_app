@@ -36,7 +36,7 @@ export default function HomePage() {
           className="input-box"
           name="q"
         />
-        <button>Search</button>
+        <button disabled={!searchInput.q}>Search</button>
       </form>
       <section className="filter">
         <label htmlFor="">Health</label>
