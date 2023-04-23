@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { db } from '../index'
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import {
+  addDoc,
+  getDocs,
+  collection,
+  serverTimestamp,
+} from 'firebase/firestore'
 import Pagination from '../components/Pagination'
 import '../css/SearchResultsPage.css'
 import Button from 'react-bootstrap/Button'
@@ -65,8 +70,65 @@ export default function SearchResultsPage() {
   const handleDisplay = () => {
     setDisplayResults(!diplayResults)
   }
+
+  const mealPlansRef = collection(db, 'mealplans')
+  const getMealPlans = async () => {
+    try {
+      const data = await getDocs(mealPlansRef)
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }))
+      setMealPlans(filteredData)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    getMealPlans()
+  }, [])
+
   const handleAddtoMealPlan = () => {} // function to add the recipe to the meal plan
-  const handleAddNewMealPlan = () => {} // function to add the new meal plan and the recipe to the database }
+  const handleAddNewMealPlan = async (e, edamamId, { recipe }) => {
+    e.preventDefault()
+    setShow(false)
+    try {
+      await addDoc(mealPlansRef, {
+        name: newMealPlan,
+        column_order: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday',
+        ],
+        columns: {
+          Monday: { id: uuid(), day: 'Monday', recipe_ids: [edamamId] },
+          Tuesday: { id: uuid(), day: 'Tuesday', recipe_ids: [] },
+          Wednesday: { id: uuid(), day: 'Wednesday', recipe_ids: [] },
+          Thursday: { id: uuid(), day: 'Thursday', recipe_ids: [] },
+          Friday: { id: uuid(), day: 'Friday', recipe_ids: [] },
+          Saturday: { id: uuid(), day: 'Saturday', recipe_ids: [] },
+          Sunday: { id: uuid(), day: 'Sunday', recipe_ids: [] },
+        },
+        recipes: {
+          [edamamId]: {
+            name: recipe.label,
+            edamam_id: edamamId,
+            image: recipe.image,
+            user_id: 1, // hardcoded user id for now
+          },
+        }, // contains id: {id: ... name: ... } maybe whole thing from my recipes?
+        user: 1, // use userid or username
+        created_at: serverTimestamp(),
+      })
+      getMealPlans()
+    } catch (err) {
+      console.log(err)
+    }
+  } // function to add the new meal plan and the recipe to the database }
 
   return (
     <section className="results-section">
@@ -139,15 +201,17 @@ export default function SearchResultsPage() {
                       onChange={handleAddtoMealPlan}
                     >
                       <option>Save into your meal plan</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                      {mealPlans.map((mealPlan, index) => (
+                        <option key={index} value={mealPlan.name}>
+                          {mealPlan.name}
+                        </option>
+                      ))}
                     </Form.Select>
                     <Form.Text>Or, you can make a new meal plan</Form.Text>
                     <Form.Control
                       type="text"
                       placeholder="new plan name"
-                      onChange={handleAddNewMealPlan}
+                      onChange={(e) => handleAddNewMealPlan(e, id, result)} // on here, the Modal closes when we put one letter in as that is the first change, we might need to move this out and do an on submit?
                     />
                     <Modal.Footer>
                       <Button variant="primary" onClick={handleClose}>
