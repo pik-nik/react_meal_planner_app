@@ -26,6 +26,7 @@ export default function MyRecipesPage() {
   // Read the data from db
   const recipeCollectionsRef = collection(db, 'recipes')
   const mealPlansRef = collection(db, 'mealplans')
+  const [addedToDb, setAddedToDb] = useState('')
 
   const getRecipeList = async () => {
     const q = query(
@@ -71,6 +72,12 @@ export default function MyRecipesPage() {
     getRecipeList()
   }
 
+  const handleShowAdd = (recipe) => {
+    setShowAdd(true)
+    setSelectedRecipe(recipe)
+    setAddedToDb('')
+  }
+
   const handleHideAdd = () => {
     setShowAdd(false)
     setSelectedPlanner('default')
@@ -100,8 +107,8 @@ export default function MyRecipesPage() {
         ...tempState.recipes,
         [selectedRecipe.edamam_id]: selectedRecipe,
       }
-      // console.log(tempState)
       await updateDoc(mealPlansDoc, tempState)
+      setAddedToDb(`Added to new meal plan: ${tempState.name}`)
       setSelectedPlanner('default')
       setNewPlanner('')
     } else {
@@ -139,6 +146,7 @@ export default function MyRecipesPage() {
         getMealPlans()
         setSelectedPlanner('default')
         setNewPlanner('')
+        setAddedToDb(`Added to new meal plan: ${newPlanner}`)
       } catch (err) {
         console.log(err)
       }
@@ -159,14 +167,12 @@ export default function MyRecipesPage() {
               <button onClick={() => deleteRecipe(recipe.id)}>
                 Delete Recipe
               </button>
-              <button
-                onClick={() => {
-                  setShowAdd(true)
-                  setSelectedRecipe(recipe)
-                }}
-              >
+              <button onClick={() => handleShowAdd(recipe)}>
                 Add to a meal plan
               </button>
+              {addedToDb && recipe === selectedRecipe ? (
+                <span>{addedToDb}</span>
+              ) : null}
             </div>
           )
         })}
