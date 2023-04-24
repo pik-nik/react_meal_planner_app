@@ -26,7 +26,10 @@ function App() {
           path="/search"
           element={<SearchResultsPage user={user} loading={loading} />}
         />
-        <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
+        <Route
+          path="/recipes/:id"
+          element={<RecipeDetailsPage user={user} loading={loading} />}
+        />
         <Route
           path="/user/:uid"
           element={<UserPage user={user} loading={loading} />}

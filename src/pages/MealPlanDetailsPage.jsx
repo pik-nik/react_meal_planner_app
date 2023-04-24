@@ -62,6 +62,7 @@ export default function MealPlanPage() {
       newMealPlan.columns[source.droppableId].recipe_ids = sourceItems
       newMealPlan.columns[destination.droppableId].recipe_ids = destItems
       setMealPlan(newMealPlan)
+      // console.log(newMealPlan.recipes)
       await updateDoc(mealPlansDoc, newMealPlan)
     } else {
       const column = columns[source.droppableId]
@@ -71,6 +72,7 @@ export default function MealPlanPage() {
       const newMealPlan = { ...mealPlan }
       newMealPlan.columns[source.droppableId].recipe_ids = copiedRecipeIds
       setMealPlan(newMealPlan)
+      // console.log(newMealPlan.recipes)
       await updateDoc(mealPlansDoc, newMealPlan)
     }
   }
