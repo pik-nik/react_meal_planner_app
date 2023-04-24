@@ -191,10 +191,10 @@ export default function MyRecipesPage({ user, loading }) {
           {currentResults.length === 0 ? (
             <p>No Saved Recipes.</p>
           ) : (
-            <div>
+            <div className="container">
               {currentResults.map((recipe) => {
                 return (
-                  <div key={recipe.id}>
+                  <div key={recipe.id} className="ui-card-myrecipes">
                     <h1>{recipe.name}</h1>
                     <img src={recipe.image} alt="" />
                     <p>{recipe.createdAt.toDate().toLocaleDateString()}</p>

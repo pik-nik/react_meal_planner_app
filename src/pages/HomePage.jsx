@@ -27,7 +27,7 @@ export default function HomePage() {
   const disabled = !Object.keys(searchInput).some((key) => searchInput[key])
 
   return (
-    <main>
+    <main className="main-home">
       <section className="search-bar-section">
         <h1 className="search-bar-title">Find a recipe</h1>
         <form onSubmit={handleSubmit}>
