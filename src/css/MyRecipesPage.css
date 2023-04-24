@@ -1,18 +1,14 @@
 .myrecipes-section {
   width: 80%;
-  margin: 0 auto;
+  height: 70vh;
+  margin: 20px auto;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 20px;
   border-radius: 10px;
-  background-color: #8993a4;
-  box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
-  border: 1px solid black;
+  background-image: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1600');
 }
 .container {
   margin: 20px 0;
@@ -26,7 +22,6 @@
   box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
-  border: 1px solid black;
   border-radius: 10px;
   padding: 10px;
   display: flex;
@@ -47,4 +42,6 @@
   border-radius: 10px;
   margin: 5px auto;
   width: 80%;
+  border: none;
+  box-shadow: 10px 9px 5px -4px rgba(0, 0, 0, 0.75);
 }

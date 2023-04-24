@@ -135,7 +135,7 @@ export default function MyMealPlans({ user, loading }) {
           </Col>
         ))}
       </Row>
-      <div>
+      <div className="add-btn-mealplan">
         <Button onClick={handleShowAddPlan}>Add Meal Plan</Button>
       </div>
       <Modal show={showAddPlan} onHide={handleHideAddPlan} backdrop="static">
@@ -204,7 +204,7 @@ export default function MyMealPlans({ user, loading }) {
               </Col>
             ))}
           </Row>
-          <div>
+          <div className="add-btn-mealplan">
             <Button onClick={handleShowAddPlan}>Add Meal Plan</Button>
           </div>
           <Modal

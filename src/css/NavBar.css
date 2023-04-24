@@ -9,6 +9,9 @@
   padding: 6px;
   cursor: pointer;
 }
+.navbar-header {
+  padding: 10px;
+}
 .navbar-header a {
   text-decoration: none;
   color: #091e42;
@@ -26,6 +29,21 @@
   width: 100px;
   height: 10px;
 }
+.navbar-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #4b4f61a9;
+}
+.navbar-header * {
+  color: white;
+}
+.btn-menu {
+  background-color: #4b4f61;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
 
 .app-name {
   font-family: 'Courgette', cursive;

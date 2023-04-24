@@ -20,56 +20,59 @@ export default function NavBar({ user, loading }) {
 
   return (
     <header className="navbar-header">
+      <div>
+        {' '}
+        <h1>Meal Plan</h1>
+      </div>
       <Navbar expand="lg" className="menu" sticky="top">
-        <Container className="container">
-          <Navbar.Brand>
-            <h1 className="app-name">Meal Planner </h1>
-          </Navbar.Brand>
-          <Link to="/">Home</Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <NavDropdown title="Menu" id="basic-nav-dropdown">
-                {loading ? (
-                  <NavDropdown.Item>
-                    <p>Loading...</p>
-                  </NavDropdown.Item>
-                ) : (
-                  <>
-                    {user ? (
-                      <>
-                        <NavDropdown.Item>
-                          <Link to={`/user/${user.uid}`}>
-                            Hello {user.displayName}
-                          </Link>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                          <Link to="/my-recipes">My Recipes</Link>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                          <Link to="/my-meal-plans">My Meal Plans</Link>
-                        </NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item>
-                          <button onClick={handleLogout}>Log out</button>
-                        </NavDropdown.Item>
-                      </>
-                    ) : (
-                      <>
-                        <NavDropdown.Item>
-                          <Link to="/login">Log in</Link>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                          <Link to="/signup">Sign Up</Link>
-                        </NavDropdown.Item>
-                      </>
-                    )}
-                  </>
-                )}
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <NavDropdown id="basic-nav-dropdown">
+              {loading ? (
+                <NavDropdown.Item>
+                  <p>Loading...</p>
+                </NavDropdown.Item>
+              ) : (
+                <>
+                  {user ? (
+                    <>
+                      <NavDropdown.Item>
+                        <Link to={`/user/${user.uid}`}>
+                          Hello {user.displayName}
+                        </Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to="/">Home</Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to="/my-recipes">My Recipes</Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to="/my-meal-plans">My Meal Plans</Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item>
+                        <button className="btn-menu" onClick={handleLogout}>
+                          Log out
+                        </button>
+                      </NavDropdown.Item>
+                    </>
+                  ) : (
+                    <>
+                      <NavDropdown.Item>
+                        <Link to="/login">Log in</Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to="/signup">Sign Up</Link>
+                      </NavDropdown.Item>
+                    </>
+                  )}
+                </>
+              )}
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
     </header>
   )
