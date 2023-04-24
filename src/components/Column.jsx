@@ -1,5 +1,6 @@
 import { Droppable } from 'react-beautiful-dnd'
 import RecipeOnMealPlan from './RecipeOnMealPlan'
+import '../css/Column.css'
 export default function Column({ column, recipes, day, handleRemove }) {
   return (
     <div className="column" key={column.id}>

@@ -1,0 +1,25 @@
+​.item {
+  user-select: none;
+  padding: 16px;
+  margin: 0 0 8px 0;
+  min-height: 50px;
+  color: white;
+}
+
+.recipe {
+  position: relative;
+}
+
+.hide-btn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-family: helvetica;
+  color: black;
+  display: none;
+}
+.recipe .item:hover .hide-btn {
+  display: block;
+}

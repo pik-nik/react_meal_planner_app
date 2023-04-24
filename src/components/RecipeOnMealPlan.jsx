@@ -1,5 +1,5 @@
 import { Draggable } from 'react-beautiful-dnd'
-
+import '../css/RecipeOnMealPlan.css'
 export default function RecipeOnMealPlan({
   recipe,
   index,
