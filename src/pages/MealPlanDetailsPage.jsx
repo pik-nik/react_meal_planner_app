@@ -91,6 +91,7 @@ export default function MealPlanPage() {
               day={day}
               handleRemove={handleRemove}
             />
+
           )
         })}
       </DragDropContext>

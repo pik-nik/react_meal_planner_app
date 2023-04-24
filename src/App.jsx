@@ -6,13 +6,13 @@ import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import UserPage from './pages/UserPage'
 import MyRecipesPage from './pages/MyRecipesPage'
+import MyMealPlans from './pages/MyMealPlans'
 import MealPlanDetailsPage from './pages/MealPlanDetailsPage'
 import SearchResultsPage from './pages/SearchResultsPage'
 import RecipeDetailsPage from './pages/RecipeDetailsPage'
 import NavBar from './components/NavBar'
 import './css/App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import MyMealPlans from './pages/MyMealPlans'
 
 function App() {
   const [user, loading, error] = useAuthState(auth)
