@@ -1,12 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Roboto:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+.meal-plan h1 {
+  font-family: 'Courgette', cursive;
+}
 
 .meal-plan {
   text-align: center;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  height: 80vh;
-  gap: 2px;
+  margin: 10px auto;
+  height: 75vh;
   /* font-size: 1rem; */
   background-color: #8993a4;
   width: 90%;
@@ -14,4 +13,10 @@
   box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
   border: 1px solid black;
   padding: 10px;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
 }

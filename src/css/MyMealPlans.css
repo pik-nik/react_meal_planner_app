@@ -6,6 +6,10 @@
   border-radius: 10px;
   background-image: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1600');
 }
+.myplans-sections h1 {
+  font-family: 'Courgette', cursive;
+}
+
 .card-body {
   background-color: #e6fcff;
   border-radius: 10px;
