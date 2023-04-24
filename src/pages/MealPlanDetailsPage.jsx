@@ -79,23 +79,26 @@ export default function MealPlanPage() {
 
   return (
     <div className="meal-plan">
-      <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, mealPlan.columns)}
-      >
-        {mealPlan.column_order?.map((day) => {
-          const column = mealPlan.columns[day]
-          const recipes = column.recipe_ids.map((id) => mealPlan.recipes[id])
-          return (
-            <Column
-              key={column.id}
-              column={column}
-              recipes={recipes}
-              day={day}
-              handleRemove={handleRemove}
-            />
-          )
-        })}
-      </DragDropContext>
+      <h1>{mealPlan.name}</h1>
+      <div className="grid">
+        <DragDropContext
+          onDragEnd={(result) => onDragEnd(result, mealPlan.columns)}
+        >
+          {mealPlan.column_order?.map((day) => {
+            const column = mealPlan.columns[day]
+            const recipes = column.recipe_ids.map((id) => mealPlan.recipes[id])
+            return (
+              <Column
+                key={column.id}
+                column={column}
+                recipes={recipes}
+                day={day}
+                handleRemove={handleRemove}
+              />
+            )
+          })}
+        </DragDropContext>
+      </div>
     </div>
   )
 }

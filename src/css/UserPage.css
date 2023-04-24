@@ -1,5 +1,5 @@
-.profile-info{
-    width: 70%;
+.profile-info {
+  width: 70%;
   margin: 60px auto;
   padding: 20px;
   display: flex;
@@ -15,12 +15,20 @@
   border: 1px solid black;
 }
 
-.username{
-    font-weight: bold;
+.username {
+  font-weight: bold;
 }
 
-.edit-profile{
-    width: 70%;
+.img-wrapper {
+  width: 400px;
+}
+
+.img-wrapper > * {
+  margin: 0 auto;
+}
+
+.edit-profile {
+  width: 70%;
   margin: 60px auto;
   padding: 20px;
   display: flex;

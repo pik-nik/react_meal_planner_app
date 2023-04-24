@@ -53,7 +53,9 @@ export default function UserPage({ user, loading }) {
           {!isEditing ? (
             <div className="profile-info">
               <h2 className="username">{user.displayName}</h2>
-              <img src={user.photoURL} alt="" />{' '}
+              <div className="img-wrapper">
+                <img src={user.photoURL} alt="" />{' '}
+              </div>
               <label htmlFor="">Want to change your account info?</label>
               <button onClick={handleEdit} className="edit-btn">
                 {isEditing ? 'Cancel' : 'Edit'}
