@@ -94,7 +94,8 @@ export default function RecipeDetailsPage({ user, loading }) {
             <Button onClick={() => setShowAdd(true)}>Add to meal plan</Button>
           )}
           <p>
-            Original Source: <Link to={recipe?.url}>{recipe?.source}</Link>
+            For the recipe, go here:{' '}
+            <Link to={recipe?.url}>{recipe?.source}</Link>
           </p>
           <AddToMealplanPopUp
             selectedRecipe={selectedRecipe}
