@@ -203,7 +203,7 @@ export default function SearchResultsPage({ user, loading }) {
         <h1>Search Results :</h1>
         <div>
           <button className="list" onClick={handleDisplay}>
-            {diplayResults ? 'Title' : 'List'}
+            {diplayResults ? 'Display as Tiles' : 'Display as List'}
           </button>
         </div>
       </header>
@@ -226,8 +226,17 @@ export default function SearchResultsPage({ user, loading }) {
                           </div>
                           <footer>
                             <h2>{result.recipe.label}</h2>
-                            <span>{result.recipe.dietLabels.join(' ')}</span>
+                            {result.recipe.dietLabels &&
+                              result.recipe.dietLabels.length > 0 && (
+                                <span>
+                                  Diet labels:{' '}
+                                  {result.recipe.dietLabels.join(' ')}
+                                </span>
+                              )}
+
                             <span>
+                              {' '}
+                              Health Labels:{' '}
                               {result.recipe.healthLabels
                                 .splice(0, 3)
                                 .join(', ')}

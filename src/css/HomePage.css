@@ -96,4 +96,29 @@
   text-transform: uppercase;
   text-decoration: none;
   color: #091e42;
+  gap: 5px;
+}
+
+.chicken {
+  background-image: url('https://drivemehungry.com/wp-content/uploads/2021/11/chicken-teriyaki-5.jpg');
+  background-size: cover;
+  width: 50%;
+  height: 100px;
+  
+}
+
+.pasta {
+  background-image: url('https://www.archanaskitchen.com/images/archanaskitchen/10-Brands/DelMonte-KidsRecipes/Spaghetti_Pasta_Recipe_In_Creamy_Tomato_Sauce_-_Kids_Recipes_Made_With_Del_Monte-3_400.jpg');
+  background-size: cover;
+  width: 50%;
+}
+
+.fish{
+  background-image: url('https://www.thebetterfish.com/wp-content/uploads/2022/08/Roast-Fish-Straight-from-Freezer.jpg');
+  background-size: cover;
+  width: 50%;
+}
+
+.pop-link{
+  color: #091e42;
 }
