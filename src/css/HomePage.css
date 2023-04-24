@@ -13,10 +13,10 @@
   gap: 20px;
 }
 .categories {
-  height: 50vh;
   background-color: #8993a4ac;
   width: 60%;
-  margin: 60px auto;
+  margin: 30px 0;
+  width: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -84,7 +84,6 @@
 }
 @media screen and (max-width: 768px) {
   .random .container-random {
-    height: 50vh;
     margin: 10px 0;
     grid-template-columns: repeat(1, 1fr);
   }
@@ -121,7 +120,6 @@
 }
 .popular div div a {
   text-decoration: none;
-  color: white;
 }
 .popular div {
   display: flex;
@@ -131,6 +129,14 @@
   text-decoration: none;
   color: #091e42;
   gap: 5px;
+}
+@media screen and (max-width: 768px) {
+  .popular div {
+    flex-wrap: wrap;
+  }
+}
+.popular div div {
+  height: 100px;
 }
 .container-random div a {
   display: flex;
@@ -144,8 +150,6 @@
   background-image: url('https://drivemehungry.com/wp-content/uploads/2021/11/chicken-teriyaki-5.jpg');
   background-size: cover;
   width: 50%;
-  height: 100px;
-  
 }
 
 .pasta {
@@ -154,12 +158,17 @@
   width: 50%;
 }
 
-.fish{
+.fish {
   background-image: url('https://www.thebetterfish.com/wp-content/uploads/2022/08/Roast-Fish-Straight-from-Freezer.jpg');
   background-size: cover;
   width: 50%;
 }
 
-.pop-link{
+.pop-link {
+  margin-top: 5px;
   color: #091e42;
+  height: fit-content;
+  background-color: #e6fcffbb;
+  padding: 3px;
+  border-radius: 5px;
 }
