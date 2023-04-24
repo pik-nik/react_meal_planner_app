@@ -13,10 +13,10 @@
   gap: 20px;
 }
 .categories {
-  height: 50vh;
   background-color: #8993a4ac;
   width: 60%;
-  margin: 60px auto;
+  margin: 30px 0;
+  width: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -145,7 +145,6 @@
   background-size: cover;
   width: 50%;
   height: 100px;
-  
 }
 
 .pasta {
@@ -154,12 +153,12 @@
   width: 50%;
 }
 
-.fish{
+.fish {
   background-image: url('https://www.thebetterfish.com/wp-content/uploads/2022/08/Roast-Fish-Straight-from-Freezer.jpg');
   background-size: cover;
   width: 50%;
 }
 
-.pop-link{
+.pop-link {
   color: #091e42;
 }
