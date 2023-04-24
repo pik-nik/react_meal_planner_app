@@ -1,5 +1,5 @@
 # Meal Planner App :plate_with_cutlery:
-<!-- Insert link here -->
+[Try it here!](https://main--velvety-figolla-99f3fd.netlify.app/)
 
 ## Planning 
 
