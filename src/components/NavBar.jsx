@@ -20,7 +20,9 @@ export default function NavBar({ user, loading }) {
 
   return (
     <header className="navbar-header">
-      <h1 className="app-name">Meal Plan</h1>
+      <Link to="/">
+        <h1 className="app-name">Meal Plan</h1>
+      </Link>
       <Navbar expand="lg" className="menu" sticky="top">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
