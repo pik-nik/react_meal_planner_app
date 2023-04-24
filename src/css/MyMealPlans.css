@@ -10,6 +10,10 @@
   font-family: 'Courgette', cursive;
 }
 
+.meal-plans {
+  margin: 10px auto;
+}
+
 .card-body {
   background-color: #e6fcff;
   border-radius: 10px;
