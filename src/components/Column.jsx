@@ -4,8 +4,8 @@ import '../css/Column.css'
 export default function Column({ column, recipes, day, handleRemove }) {
   return (
     <div className="column" key={column.id}>
-      <h2>{day}</h2>
       <div className="day-wrapper">
+        <h2>{day}</h2>
         <Droppable droppableId={column.day} key={column.day}>
           {(provided, snapshot) => {
             return (

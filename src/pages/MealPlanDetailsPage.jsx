@@ -76,7 +76,7 @@ export default function MealPlanPage() {
   }
 
   return (
-    <div className="DND">
+    <div className="meal-plan">
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, mealPlan.columns)}
       >

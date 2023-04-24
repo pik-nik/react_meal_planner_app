@@ -23,7 +23,7 @@ export default function NavBar({ user, loading }) {
       <Navbar expand="lg" className="menu" sticky="top">
         <Container className="container">
           <Navbar.Brand>
-            <h1>Meal Plan</h1>
+            <h1 className="app-name">Meal Planner </h1>
           </Navbar.Brand>
           <Link to="/">Home</Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

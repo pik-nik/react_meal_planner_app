@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
 * {
   /* border: 1px solid black; */
-  font-family: 'Noto Serif', serif;
+  /* font-family: 'Noto Serif', serif; */
+  font-family: 'Roboto', sans-serif;
   list-style: none;
   text-decoration: none;
 }
