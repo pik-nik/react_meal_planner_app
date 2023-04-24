@@ -74,7 +74,6 @@ export default function RecipeDetailsPage({ user, loading }) {
           <Button
             variant="primary"
             onClick={() => {
-              setShowAdd(true)
               handleAddRec()
             }}
             disabled={recipeAdded}
@@ -82,7 +81,7 @@ export default function RecipeDetailsPage({ user, loading }) {
           >
             <AiOutlineHeart /> Add to My Recipes
           </Button>
-          {recipeAdded ? (
+          {recipeAdded && (
             <>
               <Link to="/my-recipes">
                 <span>
@@ -90,7 +89,10 @@ export default function RecipeDetailsPage({ user, loading }) {
                 </span>
               </Link>
             </>
-          ) : null}
+          )}
+          {recipeAdded && (
+            <Button onClick={() => setShowAdd(true)}>Add to meal plan</Button>
+          )}
           <p>
             Original Source: <Link to={recipe?.url}>{recipe?.source}</Link>
           </p>

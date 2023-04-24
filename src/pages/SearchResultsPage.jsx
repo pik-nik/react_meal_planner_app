@@ -40,7 +40,6 @@ export default function SearchResultsPage({ user, loading }) {
   const recipeCollectionsRef = collection(db, 'recipes')
   const handleAddRec = async (id, { recipe }, index) => {
     if (!user) navigate('/login')
-    setShowAdd(true)
     setSelectedIndex(index)
     try {
       const docReference = await addDoc(recipeCollectionsRef, {
@@ -134,7 +133,7 @@ export default function SearchResultsPage({ user, loading }) {
                           >
                             <AiOutlineHeart /> Add to My Recipes
                           </Button>
-                          {recipeAdded && selectedIndex === index ? (
+                          {recipeAdded && selectedIndex === index && (
                             <>
                               <Link to="/my-recipes">
                                 {
@@ -145,7 +144,12 @@ export default function SearchResultsPage({ user, loading }) {
                                 }
                               </Link>
                             </>
-                          ) : null}
+                          )}
+                          {recipeAdded && (
+                            <Button onClick={() => setShowAdd(true)}>
+                              Add to meal plan
+                            </Button>
+                          )}
                         </div>
                       </li>
                     </>
