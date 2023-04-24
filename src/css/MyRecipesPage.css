@@ -1,6 +1,6 @@
 .myrecipes-section {
   width: 80%;
-  height: 70vh;
+  min-height: 70vh;
   margin: 20px auto;
   padding: 20px;
   display: flex;
@@ -8,7 +8,7 @@
   align-items: center;
   gap: 20px;
   border-radius: 10px;
-  background-image: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1600');
+  background-color: #e6fcff;
 }
 .container {
   margin: 20px 0;

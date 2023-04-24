@@ -41,31 +41,36 @@ export default function HomePage() {
             />
           </div>
           <section className="filter">
-            <label htmlFor="">Diet exclusions</label>
-            <select id="" onChange={handleFilter} name="health">
-              <option value="">Select an Option...</option>
-              <option value="vegan">Vegan</option>
-              <option value="gluten-free">Gluten-Free</option>
-              <option value="dairy-free">Milk-free</option>
-              <option value="vegatarian">Vegatarian</option>
-            </select>
-            <label htmlFor="">Cuisine</label>
-            <select id="" onChange={handleFilter} name="cuisineType">
-              <option value="">Select an Option...</option>
-              <option value="Chinese">Chinese</option>
-              <option value="Italian">Italian</option>
-              <option value="Mexican">Mexican</option>
-              <option value="Asian">Asian</option>
-            </select>
-            <label htmlFor="">Meal</label>
-            <select id="" name="mealType" onChange={handleFilter}>
-              <option value="">Select an Option...</option>
-              <option value="Breakfast">Breakfast</option>
-              <option value="Dinner">Dinner</option>
-              <option value="Lunch">Lunch</option>
-              <option value="Teatime">Tea time</option>
-            </select>
-
+            <div>
+              <label htmlFor="">Diet exclusions</label>
+              <select id="" onChange={handleFilter} name="health">
+                <option value="">Select an Option...</option>
+                <option value="vegan">Vegan</option>
+                <option value="gluten-free">Gluten-Free</option>
+                <option value="dairy-free">Milk-free</option>
+                <option value="vegatarian">Vegatarian</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="">Cuisine</label>
+              <select id="" onChange={handleFilter} name="cuisineType">
+                <option value="">Select an Option...</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Italian">Italian</option>
+                <option value="Mexican">Mexican</option>
+                <option value="Asian">Asian</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="">Meal</label>
+              <select id="" name="mealType" onChange={handleFilter}>
+                <option value="">Select an Option...</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Teatime">Tea time</option>
+              </select>
+            </div>
             <button className="btn-submit" disabled={disabled}>
               Search
             </button>
