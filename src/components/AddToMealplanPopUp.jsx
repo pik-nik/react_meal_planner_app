@@ -9,6 +9,9 @@ import {
   updateDoc,
   addDoc,
   serverTimestamp,
+  query,
+  where,
+  orderBy,
 } from 'firebase/firestore'
 
 export default function AddToMealplanPopUp({
@@ -22,8 +25,13 @@ export default function AddToMealplanPopUp({
   const [selectedPlanner, setSelectedPlanner] = useState('default')
   const mealPlansRef = collection(db, 'mealplans')
   const getMealPlans = async () => {
+    const q = query(
+      mealPlansRef,
+      where('user_id', '==', user.uid),
+      orderBy('created_at', 'desc'),
+    )
     try {
-      const data = await getDocs(mealPlansRef)
+      const data = await getDocs(q)
       const filteredData = data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,

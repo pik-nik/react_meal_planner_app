@@ -145,7 +145,7 @@ export default function SearchResultsPage({ user, loading }) {
                               </Link>
                             </>
                           )}
-                          {recipeAdded && (
+                          {recipeAdded && selectedIndex === index && (
                             <Button onClick={() => setShowAdd(true)}>
                               Add to meal plan
                             </Button>
