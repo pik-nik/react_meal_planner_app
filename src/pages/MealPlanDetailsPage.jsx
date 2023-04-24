@@ -9,9 +9,9 @@ import {
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { DragDropContext } from 'react-beautiful-dnd'
 import '../css/MealPlanDetailsPage.css'
-import { v4 as uuid } from 'uuid'
+import Column from '../components/Column'
 
 export default function MealPlanPage() {
   const mealPlansRef = collection(db, 'mealplans')
@@ -82,70 +82,16 @@ export default function MealPlanPage() {
       >
         {mealPlan.column_order?.map((day) => {
           const column = mealPlan.columns[day]
-          const recipes = column.recipe_ids.map((id) => mealPlan.recipes[id]) // can possible change this to put order in this code instead of on db
+          const recipes = column.recipe_ids.map((id) => mealPlan.recipes[id])
           return (
             <div className="column" key={column.id}>
               <h2>{day}</h2>
-              <div className="item-wrapper">
-                <Droppable droppableId={column.day} key={column.day}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        style={{
-                          background: snapshot.isDraggingOver
-                            ? 'lightblue'
-                            : 'lightgrey',
-                        }}
-                        className="draggable-area"
-                      >
-                        {recipes.map((recipe, index) => {
-                          return (
-                            <Draggable
-                              key={uuid()}
-                              draggableId={recipe.id}
-                              index={index}
-                            >
-                              {(provided, snapshot) => {
-                                return (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.dragHandleProps}
-                                    {...provided.draggableProps}
-                                    className="item"
-                                    style={{
-                                      backgroundColor: snapshot.isDragging
-                                        ? '#263B4A'
-                                        : '#456C86',
-                                      ...provided.draggableProps.style,
-                                    }}
-                                  >
-                                    {recipe.name}
-                                    <button
-                                      onClick={() =>
-                                        handleRemove(
-                                          index,
-                                          column.day,
-                                          recipe.edamam_id,
-                                        )
-                                      }
-                                      // className="hide-btn"
-                                    >
-                                      X
-                                    </button>
-                                  </div>
-                                )
-                              }}
-                            </Draggable>
-                          )
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    )
-                  }}
-                </Droppable>
-              </div>
+              <Column
+                column={column}
+                recipes={recipes}
+                day={day}
+                handleRemove={handleRemove}
+              />
             </div>
           )
         })}
