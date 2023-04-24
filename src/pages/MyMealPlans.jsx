@@ -117,7 +117,7 @@ export default function MyMealPlans({ user, loading }) {
           <Row xs={1} md={4}>
             {mealPlans?.map((mealPlan) => (
               <Col key={mealPlan.id}>
-                <div className="mealplans">
+                <div className="meal-plans">
                   <Card>
                     <Card.Body>
                       <Link to={`/my-meal-plans/${mealPlan.id}`}>
