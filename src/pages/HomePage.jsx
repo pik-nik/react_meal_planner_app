@@ -41,15 +41,15 @@ export default function HomePage() {
             />
           </div>
           <section className="filter">
-            <label htmlFor="">Health</label>
+            <label htmlFor="">Diet exclusions</label>
             <select id="" onChange={handleFilter} name="health">
               <option value="">Select an Option...</option>
               <option value="vegan">Vegan</option>
-              <option value="gluten-free">Gluten Free</option>
-              <option value="dairy-free">Milk free</option>
-              <option value="vegatarian">vegatarian</option>
+              <option value="gluten-free">Gluten-Free</option>
+              <option value="dairy-free">Milk-free</option>
+              <option value="vegatarian">Vegatarian</option>
             </select>
-            <label htmlFor="">Cusisine</label>
+            <label htmlFor="">Cuisine</label>
             <select id="" onChange={handleFilter} name="cuisineType">
               <option value="">Select an Option...</option>
               <option value="Chinese">Chinese</option>
@@ -77,13 +77,19 @@ export default function HomePage() {
           <h1>popular recipes</h1>
           <div>
             <div value={'chicken'} className="chicken">
-              <Link to="/search?q=chicken">chicken</Link>
+              <Link to="/search?q=chicken" className="pop-link">
+                chicken
+              </Link>
             </div>
             <div value={'pasta'} className="pasta">
-              <Link to="/search?q=pasta">pasta</Link>
+              <Link to="/search?q=pasta" className="pop-link">
+                pasta
+              </Link>
             </div>
             <div value={'fish'} className="fish">
-              <Link to="/search?q=fish">fish</Link>
+              <Link to="/search?q=fish" className="pop-link">
+                fish
+              </Link>
             </div>
           </div>
         </div>
@@ -92,3 +98,7 @@ export default function HomePage() {
     </main>
   )
 }
+
+/*
+
+*/

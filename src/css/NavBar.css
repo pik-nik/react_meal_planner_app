@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Roboto:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
 .collapsible .content {
   padding: 6px;
   background-color: #8993a4;
@@ -42,4 +44,7 @@
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
+
+.app-name {
+  font-family: 'Courgette', cursive;
 }

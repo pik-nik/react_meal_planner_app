@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { updateProfile } from 'firebase/auth'
 import { storage } from '..'
+import '../css/UserPage.css'
 
 export default function UserPage({ user, loading }) {
   const [isEditing, setIsEditing] = useState(false)
@@ -50,24 +51,34 @@ export default function UserPage({ user, loading }) {
       ) : (
         <>
           {!isEditing ? (
-            <>
-              <h2>{user.displayName}</h2>
+            <div className="profile-info">
+              <h2 className="username">{user.displayName}</h2>
               <img src={user.photoURL} alt="" />{' '}
-            </>
+              <label htmlFor="">Want to change your account info?</label>
+              <button onClick={handleEdit} className="edit-btn">
+                {isEditing ? 'Cancel' : 'Edit'}
+              </button>
+            </div>
           ) : (
-            <>
+            <div className="edit-profile">
+              <label htmlFor="">change your username: </label>
               <input type="text" value={username} onChange={handleUsername} />
+              <label htmlFor=""> upload a profile image or change yours:</label>
               <input type="file" accept="image/*" onChange={handleFile} />
-            </>
-          )}
-          <button onClick={handleEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
-          {isEditing && (
-            <button
-              disabled={!file && username === user.displayName}
-              onClick={handleSave}
-            >
-              Save
-            </button>
+              <footer className="edit-btns">
+                <button onClick={handleEdit} className="edit-btn">
+                  {isEditing ? 'Cancel' : 'Edit'}
+                </button>
+                {isEditing && (
+                  <button
+                    disabled={!file && username === user.displayName}
+                    onClick={handleSave}
+                  >
+                    Save
+                  </button>
+                )}
+              </footer>
+            </div>
           )}
         </>
       )}
