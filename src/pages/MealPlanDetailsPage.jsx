@@ -84,15 +84,13 @@ export default function MealPlanPage() {
           const column = mealPlan.columns[day]
           const recipes = column.recipe_ids.map((id) => mealPlan.recipes[id])
           return (
-            <div className="column" key={column.id}>
-              <h2>{day}</h2>
-              <Column
-                column={column}
-                recipes={recipes}
-                day={day}
-                handleRemove={handleRemove}
-              />
-            </div>
+            <Column
+              key={column.id}
+              column={column}
+              recipes={recipes}
+              day={day}
+              handleRemove={handleRemove}
+            />
           )
         })}
       </DragDropContext>
