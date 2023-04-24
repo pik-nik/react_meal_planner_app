@@ -77,13 +77,13 @@ export default function HomePage() {
           <h1>popular recipes</h1>
           <div>
             <div value={'chicken'} className="chicken">
-              <Link to="/search/q=chicken">chicken</Link>
+              <Link to="/search?q=chicken">chicken</Link>
             </div>
             <div value={'pasta'} className="pasta">
-              <Link to="/search/q=pasta">pasta</Link>
+              <Link to="/search?q=pasta">pasta</Link>
             </div>
             <div value={'fish'} className="fish">
-              <Link to="/search/q=fish">fish</Link>
+              <Link to="/search?q=fish">fish</Link>
             </div>
           </div>
         </div>
