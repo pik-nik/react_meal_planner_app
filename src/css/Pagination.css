@@ -26,3 +26,12 @@ ul.pagination li a.active {
 ul.pagination li a:hover:not(.active) {
   background-color: #ddd;
 }
+nav .pagination .page-item a {
+  background-color: #e6fcff;
+  box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 10px;
+}
