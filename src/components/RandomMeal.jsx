@@ -16,9 +16,14 @@ const randomQuery = options[Math.floor(Math.random() * options.length)]
 
 export default function RandomMeal() {
   const [randomMeals, setRandomMeals] = useState([])
+  const randomNumber = Math.floor(Math.random() * 100)
 
   useEffect(() => {
-    const url = `https://api.edamam.com/search?q=${randomQuery}&app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_API_KEY}&random=true&from=0&to=3`
+    const url = `https://api.edamam.com/search?q=${randomQuery}&app_id=${
+      process.env.REACT_APP_EDAMAM_APP_ID
+    }&app_key=${
+      process.env.REACT_APP_EDAMAM_API_KEY
+    }&random=true&from=${randomNumber}&to=${randomNumber + 3}`
 
     fetch(url)
       .then((res) => res.json())
