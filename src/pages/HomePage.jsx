@@ -44,6 +44,7 @@ export default function HomePage() {
           </div>
           <section className="filter">
             <div>
+              <h4>Filters</h4>
               <label htmlFor="">Diet exclusions</label>
               <select id="" onChange={handleFilter} name="health">
                 <option value="">Select an Option...</option>
