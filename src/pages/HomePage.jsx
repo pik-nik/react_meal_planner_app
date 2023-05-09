@@ -38,6 +38,8 @@ export default function HomePage() {
               value={searchInput?.q}
               className="input-box"
               name="q"
+              required
+              placeholder="Search by recipe, ingredient or keyword"
             />
           </div>
           <section className="filter">
