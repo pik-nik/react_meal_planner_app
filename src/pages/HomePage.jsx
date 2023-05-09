@@ -38,10 +38,13 @@ export default function HomePage() {
               value={searchInput?.q}
               className="input-box"
               name="q"
+              required
+              placeholder="Search by recipe, ingredient or keyword"
             />
           </div>
           <section className="filter">
             <div>
+              <h4>Filters</h4>
               <label htmlFor="">Diet exclusions</label>
               <select id="" onChange={handleFilter} name="health">
                 <option value="">Select an Option...</option>
