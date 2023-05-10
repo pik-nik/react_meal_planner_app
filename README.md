@@ -7,9 +7,10 @@
 - Popular recipes section highlights popular search results. 
 - Random recipes section highlights random recipes from a number of popular search results.
 ![](/public/readme/homepage.png)
+
 ## Search Results 
 - Options to display in list or tile mode
-- A maximum of 100 recipes are displayed at a time with 10 results per page using paginations due to the database size of the 3rd part API used, [Edamam](https://www.edamam.com/) which contains 2.3 million recipes. 
+- A maximum of 100 recipes are displayed at a time with 12 results per page using paginations due to the database size of the 3rd part API used, [Edamam](https://www.edamam.com/) which contains 2.3 million recipes. 
 ![Search for recipes](/public/readme/search.gif)
 - Users can then click on the recipe to show recipe details. 
     - As the API does not contain recipe method, a link is given to direct users to the original source. 
@@ -51,11 +52,14 @@ We used Trello, Whimsical, Slack and Zoom as collaboration tools to ensure effec
 # Tech Stack 
 - React
 - Firebase/ Firestore
-- Bootstrap
+- React-Bootstrap
 - npm 
 
 # Libraries Used 
 - [react-router-dom](https://reactrouter.com/en/main) 
 - [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) 
 - [uuid](https://www.npmjs.com/package/uuid)
+- [react-icons](https://react-icons.github.io/react-icons)
 
+# Future Features to add 
+- Options to pick more than one filter on the search page

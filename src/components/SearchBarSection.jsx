@@ -23,7 +23,7 @@ export default function SearchBarSection() {
     navigate(`/search${queryString}`)
   }
 
-  const disabled = !Object.keys(searchInput).some((key) => searchInput[key])
+  const disabled = !searchInput.q || searchInput.q?.length === 0
 
   return (
     <section className="search-bar-section">
@@ -36,7 +36,6 @@ export default function SearchBarSection() {
             value={searchInput?.q}
             className="input-box"
             name="q"
-            required
             placeholder="Search by recipe, ingredient or keyword"
           />
         </div>

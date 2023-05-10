@@ -153,6 +153,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   gap: 5px;
+  flex-wrap: wrap;
 }
 
 .popular-search,
@@ -179,8 +180,12 @@
 }
 
 @media screen and (max-width: 768px) {
-  .popular-searches,
+  /* .popular-searches,
   .random-recipes {
     flex-wrap: wrap;
+  } */
+  .categories img {
+    width: 150px;
+    height: 150px;
   }
 }

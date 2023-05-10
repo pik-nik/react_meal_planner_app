@@ -17,7 +17,7 @@ export default function SearchResultsPage({ user, loading }) {
   const [loadingResults, setLoadingResults] = useState(true)
   const [diplayResults, setDisplayResults] = useState(true)
   const [selectedIndex, setSelectedIndex] = useState(null)
-  const [resultsPerPage] = useState(10)
+  const resultsPerPage = 12
 
   const [params] = useSearchParams()
   const navigate = useNavigate()
