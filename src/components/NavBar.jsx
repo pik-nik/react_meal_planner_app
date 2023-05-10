@@ -1,11 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { auth } from '..'
 import { signOut } from 'firebase/auth'
-import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import '../css/NavBar.css'
+import { AiFillHome } from 'react-icons/ai'
 
 export default function NavBar({ user, loading }) {
   const navigate = useNavigate()
@@ -19,57 +19,55 @@ export default function NavBar({ user, loading }) {
   }
 
   return (
-    <header className="navbar-header">
+    <header className="navbar-wrapper">
       <Link to="/">
-        <h1 className="app-name">Plan My Plate</h1>
+        <h1 className="logo">Plan My Plate</h1>
       </Link>
-      <Navbar expand="lg" className="menu" sticky="top">
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar collapseOnSelect expand="sm" className="menu" sticky="top">
+        <Navbar.Toggle
+          aria-controls="navbarScroll"
+          data-bs-target="#navbarScroll"
+        />
+        <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto">
-            <NavDropdown id="basic-nav-dropdown">
-              {loading ? (
-                <NavDropdown.Item>
-                  <p>Loading...</p>
-                </NavDropdown.Item>
-              ) : (
-                <>
-                  {user ? (
-                    <>
-                      <NavDropdown.Item>
-                        <Link to={`/user/${user.uid}`}>
-                          Hello {user.displayName}
-                        </Link>
-                      </NavDropdown.Item>
-                      <NavDropdown.Item>
-                        <Link to="/">Home</Link>
-                      </NavDropdown.Item>
-                      <NavDropdown.Item>
-                        <Link to="/my-recipes">My Recipes</Link>
-                      </NavDropdown.Item>
-                      <NavDropdown.Item>
-                        <Link to="/my-meal-plans">My Meal Plans</Link>
-                      </NavDropdown.Item>
-                      <NavDropdown.Divider />
-                      <NavDropdown.Item>
-                        <button className="btn-menu" onClick={handleLogout}>
-                          Log out
-                        </button>
-                      </NavDropdown.Item>
-                    </>
-                  ) : (
-                    <>
-                      <NavDropdown.Item>
-                        <Link to="/login">Log in</Link>
-                      </NavDropdown.Item>
-                      <NavDropdown.Item>
-                        <Link to="/signup">Sign Up</Link>
-                      </NavDropdown.Item>
-                    </>
-                  )}
-                </>
-              )}
-            </NavDropdown>
+            {loading ? (
+              <NavLink>
+                <p>Loading...</p>
+              </NavLink>
+            ) : (
+              <>
+                <NavLink eventKey="1" to="/" className="home">
+                  <AiFillHome size={20} />
+                </NavLink>
+                {user ? (
+                  <div className="logged-in">
+                    <NavLink eventKey="4" to={`/user/${user.uid}`}>
+                      Hello {user.displayName}
+                    </NavLink>
+                    <NavLink eventKey="2" to="/my-recipes">
+                      My Recipes
+                    </NavLink>
+                    <NavLink eventKey="3" to="/my-meal-plans">
+                      My Meal Plans
+                    </NavLink>
+                    <NavDropdown.Divider />
+                    <NavLink eventKey="5">
+                      <button onClick={handleLogout}>Log out</button>
+                    </NavLink>
+                  </div>
+                ) : (
+                  <div className="login-signup">
+                    <NavLink eventKey="2" to="/login">
+                      Log in
+                    </NavLink>
+                    <span>/</span>
+                    <NavLink eventKey="4" to="/signup">
+                      Sign up
+                    </NavLink>
+                  </div>
+                )}
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

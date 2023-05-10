@@ -1,5 +1,5 @@
 export const dietaryRequirements = [
-  'Crustcean-Free',
+  'Crustacean-Free',
   'Dairy-Free',
   'Egg-Free',
   'FODMAP-Free',
@@ -60,7 +60,7 @@ export const popularSearches = [
   {
     name: 'Fish',
     image:
-      'https://www.thebetterfish.com/wp-content/uploads/2022/08/Roast-Fish-Straight-from-Freezer.jpg',
+      'https://www.themediterraneandish.com/wp-content/uploads/2017/10/Mediterranean-Baked-Cod-Recipe-Lemon-Garlic-The-Mediterranean-Dish-1.jpg',
   },
   {
     name: 'Vegetarian',
