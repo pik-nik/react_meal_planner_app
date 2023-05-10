@@ -10,7 +10,7 @@
 
 ## Search Results 
 - Options to display in list or tile mode
-- A maximum of 100 recipes are displayed at a time with 10 results per page using paginations due to the database size of the 3rd part API used, [Edamam](https://www.edamam.com/) which contains 2.3 million recipes. 
+- A maximum of 100 recipes are displayed at a time with 12 results per page using paginations due to the database size of the 3rd part API used, [Edamam](https://www.edamam.com/) which contains 2.3 million recipes. 
 ![Search for recipes](/public/readme/search.gif)
 - Users can then click on the recipe to show recipe details. 
     - As the API does not contain recipe method, a link is given to direct users to the original source. 

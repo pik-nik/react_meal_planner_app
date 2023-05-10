@@ -30,10 +30,10 @@
 }
 
 .results-section .display-title {
-  margin: 20px 0;
+  margin: 15px 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px 0;
 }
 .results-section .display-title li {
   display: flex;
@@ -69,7 +69,7 @@
 .results-section .display-list li,
 .results-section .display-title li {
   margin: 10px auto;
-  width: 80%;
+  width: 85%;
   list-style: none;
   background-color: #e6fcff;
   border-radius: 10px;
