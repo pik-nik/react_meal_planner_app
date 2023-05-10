@@ -96,6 +96,10 @@
     font-size: 1.5rem;
   }
 
+  .navbar-wrapper a.active {
+    text-decoration: none;
+  }
+
   .logged-in a,
   .login-signup a {
     border-bottom: 1.5px solid #034c2c;
