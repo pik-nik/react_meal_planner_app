@@ -77,19 +77,23 @@
   border: 1px solid white;
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 768px) {
   .navbar-wrapper {
     padding: 10px 20px;
   }
+  .me-auto {
+    font-size: 0.8rem;
+  }
+  .logo {
+    font-size: 2rem;
+  }
+}
 
+@media screen and (max-width: 575px) {
   .menu {
     background-color: #6eb4a9;
     border-radius: 15px;
     border: 2px solid #034c2c;
-  }
-
-  .me-auto {
-    font-size: 0.9rem;
   }
 
   .logo {
