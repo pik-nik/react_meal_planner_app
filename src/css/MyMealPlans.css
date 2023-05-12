@@ -84,6 +84,12 @@
   transform: rotate(-45deg);
 }
 
+@media screen and (max-width: 575px) {
+  .delete {
+    visibility: visible;
+  }
+}
+
 /* add meal plan */
 .add-btn-mealplan button {
   display: flex;
