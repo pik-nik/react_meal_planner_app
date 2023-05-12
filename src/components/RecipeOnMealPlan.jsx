@@ -16,12 +16,18 @@ export default function RecipeOnMealPlan({
             {...provided.dragHandleProps}
             {...provided.draggableProps}
             style={{
-              backgroundColor: snapshot.isDragging ? '#263B4A' : '#456C86',
+              border: snapshot.isDragging
+                ? '2px solid #047a47b5'
+                : '2px solid #9fcec7',
               ...provided.draggableProps.style,
-              borderRadius: 7,
-              padding: 3,
+              borderRadius: 10,
+              padding: 0,
+              overflow: 'hidden',
+              marginBottom: '2px',
+              maxHeight: '150px',
+              maxWidth: '150px',
+              minHeight: '60px',
             }}
-            className="recipe item"
           >
             <div className="item-content">
               <img src={recipe.image} className="recipe-image" alt="" />

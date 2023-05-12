@@ -4,19 +4,18 @@
 
 .meal-plan {
   text-align: center;
-  margin: 10px auto;
-  height: 75vh;
+  margin: 20px auto;
   /* font-size: 1rem; */
-  background-color: #8993a4;
-  width: 90%;
+  background-color: #9fcec7;
+  min-width: 80%;
+  max-width: fit-content;
   border-radius: 10px;
   box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
-  border: 1px solid black;
   padding: 10px;
 }
 
 .grid {
   display: flex;
   justify-content: center;
-  gap: 2px;
+  gap: 5px;
 }
