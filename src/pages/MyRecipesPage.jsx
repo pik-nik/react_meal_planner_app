@@ -72,7 +72,7 @@ export default function MyRecipesPage({ user, loading }) {
       <h1>My recipes</h1>
       <p className="noteOnApi">
         Note: due to the 3rd party API used, images may not load after a period
-        of time since adding
+        of time from adding
       </p>
       {loading ? (
         <p>Loading...</p>
