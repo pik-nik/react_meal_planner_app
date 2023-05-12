@@ -93,6 +93,16 @@ img {
   .type {
     flex-direction: column;
   }
+  .content-container h1 {
+    font-size: 1.5rem;
+  }
+  .content-container h4 {
+    font-size: 1.1rem;
+  }
+  .content-container p,
+  .content-container li {
+    font-size: 0.9rem;
+  }
 }
 
 /* add recipe buttons */
@@ -127,4 +137,13 @@ img {
 }
 span {
   color: #091e42;
+}
+
+@media screen and (max-width: 768px) {
+  .details-content .added-recipe button,
+  .details-content .instructions button,
+  .add-btn button {
+    font-size: 0.8rem;
+    margin: 5px;
+  }
 }
