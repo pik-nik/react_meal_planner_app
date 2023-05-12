@@ -135,7 +135,7 @@ export default function AddToMealplanPopUp({
       <Modal.Header closeButton>
         <Modal.Title>
           Which meal planner do you want to add <i>{selectedRecipe.name}</i>
-          to?
+          &nbsp;to?
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

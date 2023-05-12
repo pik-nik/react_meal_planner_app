@@ -29,6 +29,7 @@
   color: white;
   font-size: 0.9rem;
   border: 0;
+  transition: all 250ms;
 }
 
 .toggle-mode-btn:hover {
@@ -91,6 +92,7 @@
   -moz-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
   align-items: center;
   overflow: hidden;
+  transition: all 250ms;
 }
 
 .result:hover {
@@ -235,6 +237,7 @@ footer {
   background-color: #9fcec7;
   border: 2px solid #9fcec7;
   color: #091e42;
+  transition: all 250ms;
 }
 
 .display-list button:hover,
