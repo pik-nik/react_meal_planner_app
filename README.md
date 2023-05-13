@@ -13,12 +13,19 @@ PW: test
 ![homepage](/public/readme/homepage.png)
 
 ## Search Results 
-- Options to display in list or tile mode
+- Options to display as tile or list
+
+*tile*
+![tile mode](/public/readme/tile-mode.png)
+*list*
+![list mode](/public/readme/list-mode.png)
+
 - A maximum of 100 recipes are displayed at a time with 12 results per page using paginations due to the database size of the 3rd part API used, [Edamam](https://www.edamam.com/) which contains 2.3 million recipes. 
+
 ![Search for recipes](/public/readme/search.gif)
 - Users can then click on the recipe to show recipe details. 
     - Users can cross out ingredients off the list 
-    - As the API does not contain recipe method, a link is given to direct users to the original source. 
+    - As the API does not contain recipe method, a link is given to direct users to the original source which opens in a new tab.
 
 ## Member's Only Access
 - In order to access the "My Recipes" and "My Meal Plan" page users must sign up or log in. 
@@ -28,6 +35,8 @@ PW: test
 ## My Recipes Page
 - Shows all of the logged in user's saved recipes. 
 - Users can add recipes to meal plan from this page too. 
+
+![my recipes page](/public/readme/my_recipes.png)
 
 ## My Meal Plans Page 
 - Shows all of the logged in user's saved meal plans. 
