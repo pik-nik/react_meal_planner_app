@@ -1,12 +1,16 @@
 # Meal Planner App :plate_with_cutlery:
 [Try it here!](planmyplate.netlify.app/)
 
+To try to member's only access, sign up or use the test account below: 
+Email: test@test.com
+PW: test
+
 # User Features
 ## Homepage
 - Users can search for recipes from the home page. Filters can also be selected to specify diet exclusions, cuisine and meal type. 
 - Popular recipes section highlights popular search results. 
 - Random recipes section highlights random recipes from a number of popular search results.
-![](/public/readme/homepage.png)
+![homepage](/public/readme/homepage.png)
 
 ## Search Results 
 - Options to display in list or tile mode

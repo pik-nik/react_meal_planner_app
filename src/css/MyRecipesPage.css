@@ -67,6 +67,11 @@
   background-color: #fdfdfd8a;
   width: 100%;
   transition: all 250ms;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ui-card-myrecipes a {

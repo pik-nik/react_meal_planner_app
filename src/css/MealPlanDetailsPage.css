@@ -5,10 +5,9 @@
 .meal-plan {
   text-align: center;
   margin: 20px auto;
-  /* font-size: 1rem; */
   background-color: #9fcec7;
-  min-width: 80%;
-  max-width: fit-content;
+  width: 80%;
+  /* max-width: max-content; */
   border-radius: 10px;
   box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
   padding: 10px;
@@ -20,4 +19,11 @@
   align-items: start;
   gap: 5px;
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .meal-plan {
+    width: max-content;
+    margin: 20px 5px;
+  }
 }

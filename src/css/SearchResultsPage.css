@@ -100,6 +100,7 @@
 }
 
 .display-tile .result {
+  display: flex;
   flex-direction: column;
   margin: 10px auto;
   width: 92%;
@@ -128,9 +129,12 @@
   width: 75%;
 }
 
-.display-tile img {
+.display-tile .image-wrapper {
   width: 100%;
   aspect-ratio: 1/1;
+}
+
+.display-tile img {
   object-fit: cover;
   border-radius: 0;
 }
@@ -156,6 +160,11 @@
 .display-tile h2 {
   font-size: 1.5rem;
   margin: 2px auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .display-tile footer {

@@ -21,10 +21,12 @@
   border-radius: 15px;
 }
 
-/* media query 760 */
-
 @media screen and (max-width: 768px) {
   .column {
     grid-template-columns: 1fr;
+  }
+  .day-wrapper {
+    margin: 3px;
+    width: 100px;
   }
 }

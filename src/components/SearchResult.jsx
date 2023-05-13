@@ -16,7 +16,9 @@ export default function SearchResult({
     <li className="result">
       <div className="result-wrapper">
         <Link to={`/recipes/${id}`}>
-          <img src={result.recipe.image} alt={result.recipe.label} />
+          <div className="image-wrapper">
+            <img src={result.recipe.image} alt={result.recipe.label} />
+          </div>
           <h2>{result.recipe.label}</h2>
           <footer>
             <span className="cuisine-type">

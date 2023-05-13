@@ -15,6 +15,7 @@ export default function RecipeOnMealPlan({
             ref={provided.innerRef}
             {...provided.dragHandleProps}
             {...provided.draggableProps}
+            // inline as doesnt seem to work to add classname
             style={{
               border: snapshot.isDragging
                 ? '2px solid #047a47b5'
@@ -24,8 +25,8 @@ export default function RecipeOnMealPlan({
               padding: 0,
               overflow: 'hidden',
               marginBottom: '2px',
-              maxHeight: '150px',
-              maxWidth: '150px',
+              // maxHeight: '120px',
+              // maxWidth: '120px',
               minHeight: '60px',
             }}
           >
