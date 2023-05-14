@@ -56,8 +56,13 @@
   min-height: 200px;
 }
 
+.recipe-details .img-wrapper {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
 .ui-card-myrecipes img {
-  border-radius: 0px;
+  object-fit: cover;
 }
 .ui-card-myrecipes h2 {
   font-size: 1.3rem;
@@ -92,7 +97,7 @@
 @media screen and (max-width: 768px) {
   .container {
     margin: 5px 0;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
     gap: 15px;
   }
   .recipe-details {
