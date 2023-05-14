@@ -79,7 +79,7 @@
   }
 
   .display-tile {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 }
 /* search result */
@@ -219,7 +219,7 @@ footer {
 
   .display-tile footer {
     padding: 1px 5px;
-    font-size: 0.7rem;
+    font-size: 0.55rem;
   }
   .display-list footer {
     padding-left: 0;
@@ -286,7 +286,7 @@ footer {
     margin: 3px;
   }
   .display-tile button {
-    font-size: 0.75rem;
+    font-size: 0.6rem;
   }
   .added-recipe {
     padding: 1px 0;
