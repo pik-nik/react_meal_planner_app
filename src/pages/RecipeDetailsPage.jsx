@@ -11,6 +11,7 @@ import AddToMealplanPopUp from '../components/AddToMealplanPopUp'
 import { dietaryRequirements } from '../data'
 import { RiTimerLine } from 'react-icons/ri'
 import { FiExternalLink } from 'react-icons/fi'
+import LoginModal from '../components/LoginModal'
 
 export default function RecipeDetailsPage({ user, loading }) {
   const [recipe, setRecipe] = useState(null)
@@ -19,26 +20,30 @@ export default function RecipeDetailsPage({ user, loading }) {
   const [showAdd, setShowAdd] = useState(false)
   const [selectedRecipe, setSelectedRecipe] = useState({})
   const navigate = useNavigate()
+  const [showLogin, setShowLogin] = useState(false)
 
   const handleAddRec = async () => {
-    if (!user) navigate('/login')
-    try {
-      const docReference = await addDoc(recipeCollectionsRef, {
-        name: recipe.label,
-        edamam_id: id,
-        image: recipe.image,
-        user_id: user.uid,
-        createdAt: serverTimestamp(),
-      })
-      const returnedRecipe = await getDoc(docReference)
-      setSelectedRecipe({
-        ...returnedRecipe.data(),
-        id: returnedRecipe.id,
-      })
-    } catch (err) {
-      console.log(err)
+    if (!user) {
+      setShowLogin(true)
+    } else {
+      try {
+        const docReference = await addDoc(recipeCollectionsRef, {
+          name: recipe.label,
+          edamam_id: id,
+          image: recipe.image,
+          user_id: user.uid,
+          createdAt: serverTimestamp(),
+        })
+        const returnedRecipe = await getDoc(docReference)
+        setSelectedRecipe({
+          ...returnedRecipe.data(),
+          id: returnedRecipe.id,
+        })
+      } catch (err) {
+        console.log(err)
+      }
+      setRecipeAdded(true)
     }
-    setRecipeAdded(true)
   }
   const recipeCollectionsRef = collection(db, 'recipes')
 
@@ -139,6 +144,7 @@ export default function RecipeDetailsPage({ user, loading }) {
           showAdd={showAdd}
           setShowAdd={setShowAdd}
         />
+        <LoginModal showLogin={showLogin} setShowLogin={setShowLogin} />
       </div>
     </main>
   )

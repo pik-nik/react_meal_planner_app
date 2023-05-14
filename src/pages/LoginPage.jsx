@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '..'
 // import AlertDismissible from '../components/AlertDismissible'
 import '../css/LogInPage.css'
+import { Link } from 'react-router-dom'
 
 export default function LoginPage() {
   const [loginInfo, setLoginInfo] = useState({})
@@ -39,6 +40,9 @@ export default function LoginPage() {
         {/* {error && <AlertDismissible error={error} />} */}
         <p>{error}</p>
       </form>
+      <Link to="/signup">
+        <p>Not a member? Sign up here</p>
+      </Link>
     </section>
   )
 }

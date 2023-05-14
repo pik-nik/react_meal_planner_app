@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { ref, getDownloadURL } from 'firebase/storage'
 import { auth, storage } from '..'
 import '../css/SignUpPage.css'
+import { Link } from 'react-router-dom'
 
 export default function SignUpPage() {
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' })
@@ -48,6 +49,9 @@ export default function SignUpPage() {
         <button>Sign Up</button>
         <p>{error}</p>
       </form>
+      <Link to="/login">
+        <p>Already a member? Log in here</p>
+      </Link>
     </section>
   )
 }

@@ -6,6 +6,7 @@ import '../css/SearchResultsPage.css'
 import Pagination from '../components/Pagination'
 import AddToMealplanPopUp from '../components/AddToMealplanPopUp'
 import SearchResult from '../components/SearchResult'
+import LoginModal from '../components/LoginModal'
 
 export default function SearchResultsPage({ user, loading }) {
   const [results, setResults] = useState([])
@@ -17,9 +18,8 @@ export default function SearchResultsPage({ user, loading }) {
   const [diplayResults, setDisplayResults] = useState(true)
   const [selectedIndex, setSelectedIndex] = useState(null)
   const resultsPerPage = 12
-
+  const [showLogin, setShowLogin] = useState(false)
   const [params] = useSearchParams()
-  const navigate = useNavigate()
   const search = [...params].map((pair) => pair[1]).join(' & ')
 
   useEffect(() => {
@@ -40,25 +40,28 @@ export default function SearchResultsPage({ user, loading }) {
 
   const recipeCollectionsRef = collection(db, 'recipes')
   const handleAddRec = async (id, { recipe }, index) => {
-    if (!user) navigate('/login')
-    setSelectedIndex(index)
-    try {
-      const docReference = await addDoc(recipeCollectionsRef, {
-        name: recipe.label,
-        edamam_id: id,
-        image: recipe.image,
-        user_id: user.uid,
-        createdAt: serverTimestamp(),
-      })
-      const returnedRecipe = await getDoc(docReference)
-      setSelectedRecipe({
-        ...returnedRecipe.data(),
-        id: returnedRecipe.id,
-      })
-    } catch (err) {
-      console.log(err)
+    if (!user) {
+      setShowLogin(true)
+    } else {
+      setSelectedIndex(index)
+      try {
+        const docReference = await addDoc(recipeCollectionsRef, {
+          name: recipe.label,
+          edamam_id: id,
+          image: recipe.image,
+          user_id: user.uid,
+          createdAt: serverTimestamp(),
+        })
+        const returnedRecipe = await getDoc(docReference)
+        setSelectedRecipe({
+          ...returnedRecipe.data(),
+          id: returnedRecipe.id,
+        })
+      } catch (err) {
+        console.log(err)
+      }
+      setRecipeAdded(true)
     }
-    setRecipeAdded(true)
   }
   // get current displayed posts
   const indexOfLastResult = currentPage * resultsPerPage
@@ -119,6 +122,7 @@ export default function SearchResultsPage({ user, loading }) {
                 totalResults={results.length}
                 paginate={paginate}
               />
+              <LoginModal showLogin={showLogin} setShowLogin={setShowLogin} />
             </>
           ) : (
             <p>no results</p>

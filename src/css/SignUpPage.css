@@ -45,6 +45,16 @@
   color: #091e42;
 }
 
+.signup-section a {
+  text-decoration: none;
+  color: #091e42;
+}
+
+.signup-section a:hover {
+  text-decoration: underline;
+  color: #091e42;
+}
+
 @media screen and (max-width: 768px) {
   .signup-section form {
     display: flex;

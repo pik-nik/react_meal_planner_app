@@ -30,7 +30,7 @@ To try to member's only access, sign up or use the test account below:
 
 ## Member's Only Access
 - In order to access the "My Recipes" and "My Meal Plan" page users must sign up or log in. 
-- If users try clicking on the "Add to My Recipes" button on search results or recipes details page, they will be redirected to log in or sign up. 
+- If users try clicking on the "Add to My Recipes" button on search results or recipes details page, they alerted to log in or sign up. 
 ![Add recipes](/public/readme/add_recipe.gif)
 
 ## My Recipes Page
