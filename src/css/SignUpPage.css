@@ -56,12 +56,20 @@
 }
 
 @media screen and (max-width: 768px) {
+  .signup-section {
+    width: 80%;
+  }
+
   .signup-section form {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     text-align: center;
-    width: 80%;
+  }
+
+  .signup-section form input {
+    width: 100%;
+    margin: 0;
   }
 
   .signup-section form button {

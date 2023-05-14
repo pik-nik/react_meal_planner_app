@@ -15,18 +15,6 @@
   flex-wrap: wrap;
 }
 
-/* @media screen and (min-width: 768px) {
-  .login-section form {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-} */
-/* @media screen and (min-width: 1024px) {
-  .login-section form {
-    flex-basis: calc(100% / 3);
-  }
-} */
 .login-title {
   font-size: 2rem;
   font-weight: 600;
@@ -68,12 +56,20 @@
 }
 
 @media screen and (max-width: 768px) {
+  .login-section {
+    width: 80%;
+  }
   .login-section form {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     text-align: center;
     width: 80%;
+  }
+
+  .login-section form input {
+    width: 100%;
+    margin: 0;
   }
 
   .login-section form button {
