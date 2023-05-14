@@ -2,15 +2,16 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '..'
-import AlertDismissible from '../components/AlertDismissible'
+// import AlertDismissible from '../components/AlertDismissible'
 import '../css/LogInPage.css'
 
 export default function LoginPage() {
-  const [loginInfo, setLoginInfo] = useState({ email: '', password: '' })
-  const [error, setError] = useState('')
+  const [loginInfo, setLoginInfo] = useState({})
+  const [error, setError] = useState(null)
   const navigate = useNavigate()
 
   const handleChange = ({ target }) => {
+    setError(null)
     setLoginInfo({ ...loginInfo, [target.name]: target.value })
   }
 
@@ -22,20 +23,21 @@ export default function LoginPage() {
         navigate(`/user/${uid}`)
       })
       .catch((error) => {
-        setError(error.message)
+        setError(error.code.slice(5).replaceAll('-', ' '))
       })
   }
 
   return (
     <section className="login-section">
       <h1 className="login-title">Log In</h1>
-      <form onChange={handleChange} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="">Email</label>
-        <input type="text" value={loginInfo.email} name="email" />
+        <input type="text" onChange={handleChange} name="email" />
         <label htmlFor="">Password</label>
-        <input type="password" value={loginInfo.password} name="password" />
+        <input type="password" onChange={handleChange} name="password" />
         <button>Login</button>
-        {error.message && <AlertDismissible error={error} />}
+        {/* {error && <AlertDismissible error={error} />} */}
+        <p>{error}</p>
       </form>
     </section>
   )

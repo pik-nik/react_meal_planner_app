@@ -1,7 +1,7 @@
 import Alert from 'react-bootstrap/Alert'
 import { useState } from 'react'
 
-export default function AlertDismissible(error) {
+export default function AlertDismissible({ error }) {
   const [state, setState] = useState(true)
   const handleClose = () => setState(false)
   return (

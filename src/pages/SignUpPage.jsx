@@ -8,8 +8,10 @@ import '../css/SignUpPage.css'
 export default function SignUpPage() {
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' })
   const navigate = useNavigate()
+  const [error, setError] = useState(null)
 
   const handleChange = ({ target }) => {
+    setError(null)
     setLoginInfo({ ...loginInfo, [target.name]: target.value })
   }
 
@@ -31,19 +33,20 @@ export default function SignUpPage() {
       })
       navigate(`/user/${newUser.user.uid}`)
     } catch (error) {
-      console.log(error)
+      setError(error.code.slice(5).replaceAll('-', ' '))
     }
   }
 
   return (
     <section className="signup-section">
       <h1>Sign Up</h1>
-      <form onChange={handleChange} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="">Email</label>
-        <input type="text" value={loginInfo.email} name="email" />
+        <input type="text" onChange={handleChange} name="email" />
         <label htmlFor="">Password</label>
-        <input type="password" value={loginInfo.password} name="password" />
+        <input type="password" onChange={handleChange} name="password" />
         <button>Sign Up</button>
+        <p>{error}</p>
       </form>
     </section>
   )
