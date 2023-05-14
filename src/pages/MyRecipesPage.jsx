@@ -87,7 +87,9 @@ export default function MyRecipesPage({ user, loading }) {
                   <div key={recipe.id} className="ui-card-myrecipes">
                     <div className="recipe-details">
                       <Link to={`/recipes/${recipe.edamam_id}`}>
-                        <img src={recipe.image} alt={recipe.name} />
+                        <div className="img-wrapper">
+                          <img src={recipe.image} alt={recipe.name} />
+                        </div>
                         <h2>{recipe.name}</h2>
                       </Link>
                     </div>

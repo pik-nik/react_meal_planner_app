@@ -43,16 +43,18 @@
   -moz-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
 }
 
-/* button {
+.profile-info button,
+.edit-profile button {
   margin: 1px auto;
   border-radius: 15px;
   background-color: #047a46;
   padding: 5px 10px;
+  margin: 0 5px;
   color: white;
   font-size: 0.9rem;
   border: 0;
   transition: all 250ms;
-} */
+}
 
 @media screen and (max-width: 768px) {
   .img-wrapper {
@@ -61,5 +63,9 @@
   .profile-info,
   .edit-profile {
     width: 85%;
+  }
+
+  .edit-profile input {
+    max-width: 100%;
   }
 }
