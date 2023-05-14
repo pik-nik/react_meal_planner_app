@@ -57,6 +57,16 @@
   color: #091e42;
 }
 
+.login-section a {
+  text-decoration: none;
+  color: #091e42;
+}
+
+.login-section a:hover {
+  text-decoration: underline;
+  color: #091e42;
+}
+
 @media screen and (max-width: 768px) {
   .login-section form {
     display: flex;

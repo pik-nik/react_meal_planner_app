@@ -165,7 +165,7 @@ export default function AddToMealplanPopUp({
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={(e) => handleSubmit(e)}>
+        <Button variant="success" onClick={(e) => handleSubmit(e)}>
           Submit
         </Button>
       </Modal.Footer>
