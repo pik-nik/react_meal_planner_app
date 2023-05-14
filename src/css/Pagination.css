@@ -1,8 +1,9 @@
 ul.pagination {
   display: inline-block;
   padding: 0;
-  margin: 0;
+  margin: 10px auto;
   background-color: #9fcec7;
+  border-radius: 10px;
 }
 
 ul.pagination li {
@@ -35,4 +36,15 @@ nav .pagination .page-item a {
   border-radius: 5px;
   padding: 10px;
   margin: 0 10px;
+}
+
+@media screen and (max-width: 768px) {
+  ul.pagination li a {
+    padding: 4px 8px;
+  }
+
+  nav .pagination .page-item a {
+    padding: 4px 6px;
+    margin: 0 5px;
+  }
 }

@@ -51,6 +51,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     text-align: center;
+    width: 80%;
   }
 
   .signup-section form button {

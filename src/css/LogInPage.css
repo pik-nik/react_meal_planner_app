@@ -63,6 +63,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     text-align: center;
+    width: 80%;
   }
 
   .login-section form button {
