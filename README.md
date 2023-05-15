@@ -1,5 +1,5 @@
 # Meal Planner App :plate_with_cutlery:
-[Try it here!](planmyplate.netlify.app/)
+[Try it here!](https://pik-nik-planmyplate.netlify.app/)
 
 To try to member's only access, sign up or use the test account below: 
 - Email: test@email.com

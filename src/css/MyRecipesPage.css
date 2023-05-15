@@ -58,7 +58,6 @@
 .ui-card-myrecipes .recipe-details .img-wrapper {
   width: 100%;
   aspect-ratio: 1/1;
-  /* border: 1px solid black; */
 }
 
 .ui-card-myrecipes img {
@@ -109,7 +108,6 @@
   }
   .time-stamp {
     font-size: 0.6rem;
-    /* margin-top: 15px; */
   }
 }
 
