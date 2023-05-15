@@ -53,18 +53,16 @@
 
 .recipe-details {
   position: relative;
-  min-height: 200px;
 }
 
 .ui-card-myrecipes .recipe-details .img-wrapper {
   width: 100%;
   aspect-ratio: 1/1;
-  overflow: hidden;
+  /* border: 1px solid black; */
 }
 
 .ui-card-myrecipes img {
   object-fit: cover;
-  height: 100%;
   border-radius: 0;
 }
 
@@ -106,15 +104,12 @@
     gap: 10px;
   }
 
-  .recipe-details {
-    min-height: 120px;
-  }
   .ui-card-myrecipes h2 {
     font-size: 1rem;
   }
   .time-stamp {
     font-size: 0.6rem;
-    margin-top: 15px;
+    /* margin-top: 15px; */
   }
 }
 
