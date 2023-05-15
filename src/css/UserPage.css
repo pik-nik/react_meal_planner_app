@@ -14,16 +14,16 @@
   -moz-box-shadow: 10px 10px 21px -1px rgba(0, 0, 0, 0.75);
 }
 
-.username {
+.profile-info .username {
   font-weight: bold;
   font-family: 'Courgette', cursive;
 }
 
-.img-wrapper {
+.profile-info .img-wrapper {
   width: 400px;
 }
 
-.img-wrapper > * {
+.profile-info .img-wrapper > * {
   margin: 0 auto;
 }
 
@@ -57,7 +57,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .img-wrapper {
+  .profile-info .img-wrapper {
     width: 200px;
   }
   .profile-info,
